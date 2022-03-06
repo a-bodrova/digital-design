@@ -39,10 +39,6 @@ li {
   margin-bottom: 1rem;
 }
 
-li:last-of-type {
-  margin-bottom: 0;
-}
-
 a {
   padding: 5px;
   transition: all 0.3s ease-in;
@@ -52,9 +48,7 @@ a:hover {
   color: var(--additional-color);
 }
 
-.header,
-.container,
-.footer {
+body {
   background-color: var(--main-color);
 }
 
