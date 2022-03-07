@@ -1,0 +1,81 @@
+.hamburger {
+  display: none;
+  position: relative;
+  width: 32px;
+  height: 18px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .hamburger {
+    display: block;
+  }
+}
+
+.hamburger::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;  
+  background: var(--light-color);
+  border-radius: 5px;
+}
+
+.hamburger::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--light-color);
+  border-radius: 5px;
+}
+
+.hamburger__line {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: calc(50% - 1px);
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--light-color);
+  border-radius: 5px;
+}
+
+.hamburger.hamburger__checked {
+  cursor: pointer;
+}
+
+.hamburger.hamburger__checked::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: rotate(45deg);
+  width: 100%;
+  height: 2px;
+  background: var(--light-color);
+  border-radius: 5px;
+}
+
+.hamburger.hamburger__checked::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  transform: rotate(-45deg);
+  width: 100%;
+  height: 2px;
+  background: var(--light-color);
+  border-radius: 5px;
+}
+
+.hamburger.hamburger__checked .hamburger__line {
+  display: none;
+}
