@@ -1,0 +1,138 @@
+.main {
+  flex-basis: 80%;
+  @include flex-row-between($direction: column, $justify: flex-start);
+  gap: 3rem;
+}
+
+.bullets {
+  @include columns(25%);
+
+  .bullet {
+    padding: 2rem;
+    background-color: $color-light;
+    color: $color-primary;
+    cursor: pointer;
+
+    &.active {
+      background-color: $color-light-active;
+    }
+
+    &__title {
+      @include menu-text($style: normal, $font-size: 18px, $line-height: 18px);
+    }
+
+    &__text {
+      @include menu-text($font-size: 10px, $line-height: 19px);
+
+      @include media-laptop {
+        display: none;
+      }
+    }
+
+    &:hover {
+      background-color: $color-light-active;
+    }
+
+    @include media-laptop {
+      padding: 1rem;
+      text-align: center;
+    }
+
+    @include media-tablet {
+      display: none;
+    }
+  }
+}
+
+.subscribe__wrapper {
+  display: flex;
+  align-items: center;
+  max-width: 896px;
+  padding: 2rem 1rem;
+  gap: 2.5rem;
+  border-top: 1px dashed $color-smokie;
+  border-bottom: 1px dashed $color-smokie;
+
+  .description {
+    flex-basis: 67%;
+    @include flex-row-between($justify: flex-start);
+    gap: 1.5rem;
+
+    &__text {
+      flex-basis: 75%;
+      flex-grow: 1;
+      @include menu-text($line-height: 14px);
+
+      @include media-tablet {
+        line-height: 16px;
+      }
+    }
+
+    @include media-landscape {
+      flex-basis: 60%;
+    }
+  }
+
+  .enter {
+    flex-basis: 33%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.8rem;
+
+    @include media-landscape {
+      flex-basis: 40%;
+    }
+
+    @include media-tablet {
+      width: 100%;
+      gap: 3.5rem;
+    }
+
+    &__input {
+      max-height: 22px;
+      padding: 6px;
+      border: 1px solid $color-smokie;
+      border-radius: 0;
+      outline: none;
+
+      &::placeholder {
+        @include menu-text(10px, $line-height: 10px, $style: normal);
+        color: $color-smokie;
+      }
+
+      &:focus {
+        border: 1px solid $color-primary;
+
+        &:valid {
+          outline: 2px solid green;
+        }
+  
+        &:invalid {
+          outline: 2px solid red;
+        }
+      }
+
+      @include media-tablet {
+        flex-grow: 1;
+      }
+    }
+
+    &__button {
+      padding: 5px 20px;
+      background: linear-gradient(180deg, $color-light 0%, $color-light-active 100%);
+      @include border;
+      border-radius: 2px;
+      cursor: pointer;
+
+      &:active {
+        background: linear-gradient(180deg, #F4F3F3 0%, #BBB9B9 100%);
+        @include border($color-light-active);
+      }
+    }
+  }
+
+  @include media-tablet {
+    flex-direction: column;
+  }
+}

@@ -1,0 +1,24 @@
+%filter-primary-color {
+  filter: invert(54%) sepia(81%) saturate(343%) hue-rotate(129deg) brightness(92%) contrast(89%);
+}
+
+%filter-smokie-color {
+  filter: invert(99%) sepia(1%) saturate(369%) hue-rotate(187deg) brightness(110%) contrast(80%);
+}
+
+%button-hover {
+  background-color: $color-smokie;
+}
+
+%button-active {
+  border: 1px solid $color-dark;
+  transform: scale(0.93);
+}
+
+%footer-icon-hover {
+  @extend %filter-primary-color;
+}
+
+%transition {
+  transition: all ease 0.6s;
+}

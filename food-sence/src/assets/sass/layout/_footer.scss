@@ -1,0 +1,60 @@
+.footer {
+  @include flex-row-between;
+  padding: 25px 8px 35px 8px;
+  border-top: 2px solid $color-smokie;
+
+  .icon {
+    @extend %filter-smokie-color;
+
+    &:hover {
+      @extend %footer-icon-hover;
+    }
+  }
+
+  &__twitter {
+    @include bgiIcon(#{twitter});
+
+  }
+
+  &__facebook {
+    @include bgiIcon(#{fb});
+
+  }
+
+  &__rss {
+    @include bgiIcon(#{rss});
+
+  }
+}
+
+.socials {
+  @include flex-row-between($justify: flex-end);
+  gap: 5px;
+}
+
+.links {
+  @include flex-row-between($justify: flex-start);
+  gap: 5px;
+  margin-bottom: 5px;
+
+  .link {
+    @include menu-text($font-size: 12px, $line-height: 12px, $style: normal);
+    color: $color-primary;
+    cursor: pointer;
+
+    &:hover {
+      border-bottom: 1px dashed $color-primary;
+    }
+  }
+
+  span {
+    color: $color-smokie;
+  }
+}
+
+
+.copyright {
+  @include menu-text($font-size: 12px, $line-height: 12px, $style: normal);
+  color: $color-smokie;
+}
+

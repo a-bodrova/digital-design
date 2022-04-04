@@ -1,0 +1,46 @@
+.two-rows {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 1.5rem;
+}
+
+.two-columns {
+  @include flex-row-between($align-items: flex-start, $wrap: nowrap, $grow: 1);
+
+  @include media-landscape {
+    align-items: stretch;
+  }
+}
+
+.list-menu__item > a {
+  @include flex-row-between($justify: flex-start);
+  gap: 12px;
+  padding: 5px;
+  margin-bottom: 25px;
+
+  @include media-landscape {
+    flex-direction: column;
+  }
+}
+
+.articles {
+  max-width: 100%;
+  @include columns(20%);
+
+  @include media-landscape {
+    @include columns(50%);
+    gap: 1rem;
+  }
+
+  @include media-tablet {
+    @include columns(38%);
+    flex-wrap: wrap;
+  }
+
+  @include media-mobile {
+    @include columns(90%);
+    max-width: 90%;
+    justify-content: center;
+  }
+}

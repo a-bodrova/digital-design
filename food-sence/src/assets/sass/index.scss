@@ -1,0 +1,14 @@
+@import './abstract/constants';
+@import './abstract/mixins';
+@import './abstract/placeholders';
+
+@import './base/normalize';
+@import './base/base';
+
+@import './layout/layout';
+@import './layout/aside';
+@import './layout/main';
+@import './layout/footer';
+
+@import './components/slider';
+@import './components/posts';

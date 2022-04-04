@@ -1,0 +1,42 @@
+.container {
+  max-width: map-get($width, content);
+  margin: 0 auto;
+  padding: 4.4rem 4.8rem;
+  padding-bottom: 0;
+
+  @include media-laptop {
+    max-width: map-get($width, laptop);
+  }
+
+  @include media-landscape {
+    max-width: map-get($width, tablet-landscape);
+    padding: 2rem;
+    padding-bottom: 0;
+  }
+
+  @include media-tablet {
+    max-width: map-get($width, tablet);
+  }
+
+  @include media-mobile {
+    max-width: map-get($width, mobile);
+    padding: 1rem 0;
+  }
+}
+
+.main-wrapper.two-columns {
+  gap: 4.5rem;
+
+  @include media-landscape {
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  @include media-tablet {
+    gap: 2rem;
+  }
+
+  @include media-mobile {
+    gap: 1rem;
+  }
+}

@@ -1,0 +1,66 @@
+// colors
+$color-white: #ffffff;
+$color-light: #eff8f7;
+$color-light-active: #d9efec;
+$color-primary: #34aca7;
+$color-dark: #000000;
+$color-smokie: #e5e5e5;
+
+$color: (
+  white: #ffffff,
+  light: #eff8f7,
+  light-active: #d9efec,
+  primary: #34aca7,
+  dark: #000000,
+  color-smokie: #e5e5e5,
+);
+
+// fonts
+$font-primary: Arial;
+$font-aside-header: Verdana;
+
+$font: (
+  primary: Arial,
+  aside-header: Verdana,
+);
+
+// widths
+$width-desktop: 1176px;
+$width-laptop: 992px;
+$width-tablet: 768px;
+$width-mobile: 480px;
+
+$width: (
+  content: 1177px,
+  laptop: 1176px,
+  tablet-landscape: 992px,
+  tablet: 768px,
+  mobile: 480px,
+);
+
+// path to icons
+$icons: (
+  a-list: '../assets/svg/a-list-icon.svg',
+  about: '../assets/svg/about-icon.svg',
+  blog: '../assets/svg/blog-icon.svg',
+  camera: '../assets/svg/camera-icon.svg',
+  fb: '../assets/svg/fb-icon.svg',
+  food: '../assets/svg/food-icon.svg',
+  logo: '../assets/svg/icon-logo.svg',
+  mail: '../assets/svg/mail-icon.svg',
+  rss: '../assets/svg/rss-icon.svg',
+  twitter: '../assets/svg/twitter-icon.svg',
+);
+
+//path to slider images
+$slider: (
+  baner_1: '../assets/jpg/baner_1.jpg',
+);
+
+//path to post images
+$posts: (
+  post-1: '../assets/jpg/post_1.jpg',
+  post-2: '../assets/jpg/post_2.jpg',
+  post-3: '../assets/jpg/post_3.jpg',
+  post-4: '../assets/jpg/post_4.jpg',
+);

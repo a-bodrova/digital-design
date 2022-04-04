@@ -1,0 +1,130 @@
+.menu {
+  @include flex-row-between($direction: column);
+  flex-basis: 12%;
+  gap: 1rem;
+
+  &__list {
+    flex-wrap: nowrap;
+
+    @include media-landscape {
+      display: flex;
+      justify-content: space-around;
+      flex-grow: 1;
+    }
+  }
+
+  @include media-landscape {
+    flex-direction: row;
+    gap: 9rem;
+  }
+
+  @include media-tablet {
+    gap: 1rem;
+  }
+
+  @include media-mobile {
+    flex-direction: column-reverse;
+  }
+}
+
+.list__item__text {
+  @include menu-text;
+  color: $color-primary;
+}
+
+.icon {
+  @include sizes(30px);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  @extend %transition;
+
+  &-food {
+    @include bgiIcon(#{food});
+  }
+
+  &-blog {
+    @include bgiIcon(#{blog});
+
+  }
+
+  &-list {
+    @include bgiIcon(#{a-list});
+
+  }
+
+  &-camera {
+    @include bgiIcon(#{camera});
+
+  }
+
+  &-about {
+    @include bgiIcon(#{about});
+
+  }
+
+  &-mail {
+    @include bgiIcon(#{mail});
+  }
+
+  @include media-tablet {
+     display: none;
+  }
+}
+
+.aside__block {
+  @include flex-row-between($direction: column, $align-items: flex-start);
+  gap: 1rem;
+
+  &__btn {
+    width: 100%;
+    @include flex-row-between($justify: flex-start);
+    flex-wrap: nowrap;
+    gap: 7px;
+    padding: 7px;
+    border: 1px solid $color-smokie;
+    border-radius: 5px;
+    cursor: pointer;
+
+    &__icon {
+      @include sizes(16px);
+      @include bgiIcon(#{twitter});
+      background-size: contain;
+      @extend %filter-primary-color;
+    }
+
+    &__text {
+      @include menu-text($font-size: 10px);
+      white-space: nowrap;
+      color: $color-primary;
+    }
+
+    &:hover {
+      @extend %button-hover;
+    }
+
+    &:active {
+      @extend %button-active;
+    }
+  }
+
+  @include media-landscape {
+    display: none;
+  }
+}
+
+.aside__header__wrapper {
+  width: 100%;
+  border-bottom: 1px dashed $color-smokie;
+
+  .aside__header {
+    @include font-aside-header;
+    align-self: flex-start;
+  }
+}
+
+.friends__text {
+  @include menu-text($font-size: 10px);
+  line-height: 19px;
+}
