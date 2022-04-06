@@ -1,16 +1,17 @@
 .main {
   flex-basis: 80%;
-  @include flex-row-between($direction: column, $justify: flex-start);
-  gap: 3rem;
+  @include flex-row-between($direction: column, $justify: flex-start, $align-items: center);
 }
 
 .bullets {
+  width: 100%;
   @include columns(25%);
+  background-color: $color-light;
+  color: $color-primary;
 
   .bullets__item {
     padding: 2rem;
-    background-color: $color-light;
-    color: $color-primary;
+    
     cursor: pointer;
 
     &:hover {
@@ -23,10 +24,12 @@
 
     &__title {
       @include menu-text($style: normal, $font-size: 18px, $line-height: 18px);
+      text-align: center;
     }
 
     &__text {
       @include menu-text($font-size: 10px, $line-height: 19px);
+      text-align: center;
 
       @include media-laptop {
         display: none;
@@ -49,6 +52,7 @@
   align-items: center;
   max-width: 896px;
   padding: 2rem 1rem;
+  margin: 3rem 0;
   gap: 2.5rem;
   border-top: 1px dashed $color-smokie;
   border-bottom: 1px dashed $color-smokie;
