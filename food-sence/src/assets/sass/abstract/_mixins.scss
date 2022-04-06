@@ -29,7 +29,7 @@
   text-transform: uppercase;
 }
 
-@mixin menu-text($font-size: 14px, $style: italic, $line-height: 12px) {
+@mixin menu-text($font-size: 14px, $line-height: 16px, $style: italic) {
   font-family: $font-primary;
   font-style: $style;
   font-weight: 400;

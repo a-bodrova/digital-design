@@ -7,11 +7,15 @@
 .bullets {
   @include columns(25%);
 
-  .bullet {
+  .bullets__item {
     padding: 2rem;
     background-color: $color-light;
     color: $color-primary;
     cursor: pointer;
+
+    &:hover {
+      background-color: $color-light-active;
+    }
 
     &.active {
       background-color: $color-light-active;
@@ -27,10 +31,6 @@
       @include media-laptop {
         display: none;
       }
-    }
-
-    &:hover {
-      background-color: $color-light-active;
     }
 
     @include media-laptop {
