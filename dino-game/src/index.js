@@ -1,4 +1,4 @@
 import './assets/sass/main.scss';
+import { getApp } from './js/renders';
 
-console.log("Hello World!");
-
+getApp();
