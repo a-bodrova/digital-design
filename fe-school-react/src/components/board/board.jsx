@@ -5,23 +5,22 @@ import Event from "../event/event";
 import LoadMore from "../load-more/load-more";
 import { AppRoute } from "../../const";
 
-const Board = ({mode}) => {
+const Board = (props) => {
+  const render = () => {
+    return props.mode === AppRoute.FORM ? <Event /> : <LoadMore />;
+  };
+  
   return (
     <section className="board">
-      {mode === AppRoute.MAIN &&
+      {props.mode === AppRoute.MAIN &&
         <Sorting />
       }
-      {mode !== AppRoute.FORM && (
+      {props.mode !== AppRoute.FORM && (
         <div className="board__events">
           <Card />
         </div>
       )}
-      {mode === AppRoute.FORM &&
-        <Event />
-      }
-      {mode !== AppRoute.FORM &&
-        <LoadMore />
-      }
+      {render()}
     </section>
   );
 }

@@ -1,9 +1,14 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 const Event = () => {
+  const { id } = useParams();
+  const buttonText = id ? 'Сохранить' : 'Добавить';
+  const title = id ? 'Редактирование события' : 'Добавление события';
+
   return (
     <form className="board__form">
-      <h2 className="board__title">Добавление события</h2>
+      <h2 className="board__title">{title}</h2>
       <fieldset className="board__field board__field--theme">
         <label htmlFor="theme" className="board__label board__label--theme">
           Тема:
@@ -38,7 +43,7 @@ const Event = () => {
       </fieldset>
       <div className="btns">
         <button type="submit" className="btn-submit">
-          Добавить
+          {buttonText}
         </button>
         <button type="reset" className="btn-reset">
           Очистить

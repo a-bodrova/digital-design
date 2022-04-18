@@ -424,3 +424,10 @@ body {
   outline: none;
   border: 0;
 }
+
+.error-container {
+  margin: 20px auto;
+  padding: 20px;
+  color: #000000;
+  text-align: center;
+}
