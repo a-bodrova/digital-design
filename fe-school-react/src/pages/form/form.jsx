@@ -1,7 +1,7 @@
 import React from "react";
 import Header from "../../components/header/header";
 import Filter from "../../components/filter/filter";
-import Board from "../../components/board/board";
+import Event from "../../components/event/event";
 
 const Form = (props) => {
   return (
@@ -9,7 +9,9 @@ const Form = (props) => {
     <Header mode={props.match.path} />
     <section className="main__wrapper">
       <Filter mode={props.match.path} />
-      <Board mode={props.match.path} />
+      <section className="board">
+        <Event />
+      </section>
     </section>
     </>
   )
