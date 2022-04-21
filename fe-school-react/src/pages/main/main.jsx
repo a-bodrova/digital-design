@@ -2,15 +2,14 @@ import React from "react";
 import Header from "../../components/header/header";
 import Filter from "../../components/filter/filter";
 import Board from "../../components/board/board";
-// import { AppRoute } from "../../const";
 
-const Main = ({mode}) => {
+const Main = (props) => {
   return (
     <>
-      <Header mode={mode} />
+      <Header mode={props.match.path}/>
       <section className="main__wrapper">
-        <Filter mode={mode} />
-        <Board mode={mode} />
+        <Filter mode={props.match.path}/>
+        <Board mode={props.match.path}/>
       </section>
     </>
   );

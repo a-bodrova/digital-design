@@ -9,7 +9,7 @@ const Sorting = () => {
               id="board__filter-default"
               className="board__filter visually-hidden"
               name="board-filter"
-              checked
+              defaultChecked
             />
             <label htmlFor="board__filter-default" className="board__filter-label">По умолчанию</label>
             <input
