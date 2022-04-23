@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { AppRoute } from "../../const";
 
 const Header = ({mode}) => {
+  console.log(mode);
   return (
     <section className="main__header">
       <section className="main__header-wrap">
         <span className="main__header-logo">SomeList</span>
         <div className="main__header-group-lnk">
-          <Link to={AppRoute.MAIN} className={`main__header-lnk ${(mode === AppRoute.MAIN || mode === AppRoute.FORM) && 'lnk-active'}`}>
+          <Link to={AppRoute.MAIN} className={`main__header-lnk ${(mode === AppRoute.MAIN || mode === AppRoute.FORM || mode === AppRoute.ADD) && 'lnk-active'}`}>
             События
           </Link>
           <Link to={AppRoute.ARCHIVE} className={`main__header-lnk ${mode === AppRoute.ARCHIVE && 'lnk-active'}`}>

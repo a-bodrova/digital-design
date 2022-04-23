@@ -1,8 +1,12 @@
 import React from "react";
 import Create from "../create/create";
 import { AppRoute } from "../../const";
+import { useLocation } from "react-router-dom";
 
-const Filter = ({mode}) => {
+const Filter = () => {
+
+  const { pathname } = useLocation();
+
   return (
     <section className="main__filter filter">
       <input
@@ -53,7 +57,7 @@ const Filter = ({mode}) => {
       <label htmlFor="filter__favorite" className="filter__label">
         Избранное <span className="filter__favorite-count count">1</span>
       </label>
-      {mode === AppRoute.MAIN &&
+      {pathname === AppRoute.MAIN &&
         <Create />
       }
     </section>
