@@ -1,16 +1,23 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/header/header";
 import Filter from "../../components/filter/filter";
 import Event from "../../components/event/event";
 
-const Form = (props) => {
+const Form = ({events}) => {
+
+  const { pathname } = useLocation();
+  const path = `/${pathname.split('/')[1]}`;
+  const id = pathname.split('/')[2];
+  const  event = events.filter(item => item._id === id).pop();
+
   return (
     <>
-    <Header mode={props.match.path} />
+    <Header mode={path} />
     <section className="main__wrapper">
-      <Filter mode={props.match.path} />
+      <Filter />
       <section className="board">
-        <Event />
+        <Event event={event}/>
       </section>
     </section>
     </>
