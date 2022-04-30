@@ -1,8 +1,12 @@
-import React from "react";
+const LoadMore = ({handler}) => {
 
-const LoadMore = () => {
   return (
-    <button className="load-more" type="button">Загрузить еще</button>
+    <button
+      className="load-more"
+      type="button"
+      onClick={handler}>
+        Загрузить еще
+    </button>
   )
 }
 
