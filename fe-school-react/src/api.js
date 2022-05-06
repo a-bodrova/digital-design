@@ -37,6 +37,10 @@ export const deleteEvent = (id) => {
   return sendRequest(`${url}/${id}`, 'DELETE');
 };
 
+// export const deleteAllArchiveEvents = () => {
+//   return sendRequest(`${url}/archive/delete`, 'DELETE');
+// };
+
 export const deleteAllArchiveEvents = (ids) => {
   return ids.map(id => deleteEvent(id));
 };

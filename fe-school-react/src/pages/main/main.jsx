@@ -5,10 +5,11 @@ import Filter from "../../components/filter/filter";
 import Board from "../../components/board/board";
 import { events } from "../../store";
 import { observer } from "mobx-react-lite";
+import NoEvents from "../../components/no-events/noEvents";
 
 const Main = observer(() => {
 
-  const { notArchiveData } = events;
+  const { filteredData } = events;
 
   const { pathname } = useLocation();
 
@@ -17,7 +18,8 @@ const Main = observer(() => {
       <Header mode={pathname} />
       <section className="main__wrapper">
         <Filter />
-        <Board events={notArchiveData} />
+        {filteredData.length ? <Board events={filteredData} /> : <NoEvents />}
+
       </section>
     </>
   );

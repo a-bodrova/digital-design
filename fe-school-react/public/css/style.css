@@ -283,8 +283,9 @@ body {
 .btn-reset:active {
   background-color: #194058;
 }
-.load-more {
-  width: calc(100% - 86px);
+.load-more,
+.show-all {
+  width: 50%;
   padding: 12px 0;
   display: flex;
   justify-content: center;
@@ -298,13 +299,19 @@ body {
   margin-bottom: 10px;
   outline: none;
 }
-.load-more:hover {
+.load-more:hover,
+.show-all:hover {
   background-color: rgba(0, 0, 0, 0.1);
   opacity: 0.8;
 }
-.load-more:active {
+.load-more:active,
+.show-all:active {
   background-color: rgba(0, 0, 0, 0.2);
   opacity: 0.8;
+}
+.load-more:disabled {
+  cursor: auto;
+  
 }
 .card {
   width: calc(1/5*100% - 20px);
