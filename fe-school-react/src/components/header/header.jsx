@@ -1,9 +1,10 @@
+
 import React from "react";
 import { Link } from "react-router-dom";
 import { AppRoute } from "../../const";
+import DeleteAllArchive from "../deleteAllArchive/deleteAllArchive";
 
 const Header = ({mode}) => {
-  console.log(mode);
   return (
     <section className="main__header">
       <section className="main__header-wrap">
@@ -16,6 +17,7 @@ const Header = ({mode}) => {
             Архив
           </Link>
         </div>
+        {mode === AppRoute.ARCHIVE && <DeleteAllArchive />}
       </section>
     </section>
   );

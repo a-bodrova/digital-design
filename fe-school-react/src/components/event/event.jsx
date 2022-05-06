@@ -1,14 +1,19 @@
 import React from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import moment from "moment";
+import { observer } from "mobx-react-lite";
+import { addEvent } from "../../api";
+import { events } from "../../store";
+import { action } from "mobx";
 
-const Event = ({event}) => {
-  const { id } = useParams();
+const Event = observer(({id}) => {
+
   const buttonText = id ? 'Сохранить' : 'Добавить';
   const title = id ? 'Редактирование события' : 'Добавление события';
 
-  if (!event) {
+  let event = {...events.card};
+
+  if (!id) {
     event = {
       theme: '',
       comment: '',
@@ -27,9 +32,23 @@ const Event = ({event}) => {
     setForm({...form, [ name ]: value});
   };
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = action((evt) => {
     evt.preventDefault();
-  };
+
+    id ? events.editEvent({...form, id: event._id, archive: event.archive, favorite: event.favorite}) : addEvent(form);
+
+    events.card = {};
+    events.fetch();
+    window.history.back();
+  });
+
+  const handleClean = () => {
+    setForm({
+      theme: '',
+      comment: '',
+      date: '',
+    })
+  }
 
   return (
     <form className="board__form" onSubmit={handleSubmit}>
@@ -73,15 +92,20 @@ const Event = ({event}) => {
         />
       </fieldset>
       <div className="btns">
-        <button type="submit" className="btn-submit">
+        <button
+          type="submit"
+          className="btn-submit">
           {buttonText}
         </button>
-        <button type="reset" className="btn-reset">
+        <button
+          type="reset"
+          className="btn-reset"
+          onClick={handleClean}>
           Очистить
         </button>
       </div>
     </form>
   );
-}
+})
 
 export default Event;
