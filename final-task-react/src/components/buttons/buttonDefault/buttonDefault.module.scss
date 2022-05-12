@@ -1,0 +1,62 @@
+@import '../../../styles/index.scss';
+
+.default {
+  padding: 2.5px 20px;
+  @include common-text;
+  background-color: $color-default-btn;
+  color: $color-dark;
+  border: 1px solid $color-text;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-default-btn-hover;
+  }
+
+  &:active {
+    background-color: $color-default-btn-active;
+  }
+}
+
+.primary {
+  background-color: $color-primary;
+  color: $color-light;
+  border: 1px solid $color-primary;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+
+  &:active {
+    background-color: $color-primary-active;
+  }
+}
+
+.error {
+  background-color: $color-error;
+  color: $color-light;
+  border: 1px solid $color-error;
+
+  &:hover {
+    background-color: $color-error-hover;
+  }
+
+  &:active {
+    background-color: $color-error-active;
+  }
+}
+
+.disabled {
+  background-color: $color-disabled;
+  color: $color-label-text;
+  border: 1px solid $color-disabled;
+  cursor: auto;
+
+  &:hover {
+    background-color: $color-disabled;
+  }
+
+  &:active {
+    background-color: $color-disabled;
+  }
+}

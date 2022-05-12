@@ -1,0 +1,49 @@
+@import '../../styles/index.scss';
+
+.user_tasks__item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 58px;
+  padding: 20px 30px;
+  cursor: pointer;
+
+  &:nth-child(2n) {
+    background-color: $color-bg-item;
+  }
+
+  &:hover {
+    background-color: $color-label-text;
+  }
+}
+
+.task_type {
+  position: relative;
+  @include sizes(24px);
+  border-radius: 5px;
+
+  &.bug {
+    background-color: $color-bug;
+  }
+
+  &.task {
+    background-color: $color-task;
+  }
+
+  &::after {
+    position: absolute;
+    content: '';
+    top: 6px;
+    left: 6px;
+    @include sizes(12px);
+    background-color: $color-light;
+    border-radius: 50%;
+  }
+}
+
+.task_title {
+  @include common-text;
+  flex-grow: 1;
+}
+

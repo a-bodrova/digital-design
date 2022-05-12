@@ -1,0 +1,72 @@
+@import '../../styles/index.scss';
+
+.container {
+  width: 300px;
+  margin-bottom: auto;
+  background-color: $color-light;
+  box-shadow: 0px 0px 5px 3px #B5B5B5;
+  border-radius: 5px;
+}
+
+.fieldset {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  border: none;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px;
+
+  & .title {
+    @include common-text($size: 24px, $height: 28px);
+    font-weight: 300;
+  }
+
+  .label {
+    @include common-text;
+    color: $color-label-text;
+  }
+}
+
+input {
+  width: 100%;
+  height: 24px;
+  margin-top: 5px;
+  @include dropdown-text;
+  font-size: 14px;
+  color: $color-text;
+  box-shadow: inset 0px 0px 2px 1px #B5B5B5;
+  border-radius: 3px;
+  border: none;
+  outline: none;
+
+  &:hover {
+    border: 1px solid $color-primary;
+  }
+
+  &:focus {
+    border: 1px solid $color-primary;
+    box-shadow: 0px 0px 2px 2px rgba(123, 97, 255, 0.5);
+  }
+
+  &.input_error {
+    border: 1px solid $color-error;
+
+    &:focus {
+      box-shadow: 0px 0px 2px 2px rgba(255, 97, 97, 0.5);
+    }
+  }
+}
+
+.error_line {
+  @include common-text($size: 14px);
+  color: $color-error;
+}

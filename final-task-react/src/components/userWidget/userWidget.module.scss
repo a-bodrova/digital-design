@@ -1,0 +1,24 @@
+@import '../../styles/index.scss';
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  @include common-text;
+
+  & .avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    cursor: pointer;
+
+    &__border {
+      position: relative;
+      @include avatar-border(42px);
+
+      &:hover {
+        box-shadow: 0px 0px 2px 2px rgba(123, 97, 255, 0.5);
+      }
+    }
+  }
+}

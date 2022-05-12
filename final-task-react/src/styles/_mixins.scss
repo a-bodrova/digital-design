@@ -1,0 +1,38 @@
+@mixin sizes($width) {
+  width: $width;
+  height: $width;
+}
+
+@mixin dropdown-text {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+}
+
+@mixin common-text($size: 16px, $height: 19px) {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: $size;
+  line-height: $height;
+}
+
+@mixin page-title {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 28px;
+}
+
+@mixin avatar-border($width) {
+  width: $width;
+  height: $width;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: conic-gradient($color-error, $color-primary, $color-error, $color-primary, $color-error, $color-primary, $color-error);
+  border-radius: 50%;
+}
