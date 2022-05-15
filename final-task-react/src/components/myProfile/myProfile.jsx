@@ -3,7 +3,7 @@ import styles from './myProfile.module.scss';
 import avatar from '../../assets/avatar-anonymous.jpg';
 import { observer } from "mobx-react-lite";
 import { userStore } from '../../stores/usersStore/usersStore';
-import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
+import PageTitle from "../pageTitle/pageTitle";
 import UserTaskListItem from '../userTaskListItem/userTaskListItem';
 import Modal from '../modal/modal';
 
@@ -17,16 +17,22 @@ const MyProfile = observer(() => {
     setIsModal(!isModal);
   }
 
+  const buttons = [
+    {
+      text: 'Добавить задачу',
+      view: 'default',
+    },
+    {
+      text: 'Редактировать',
+      view: 'primary',
+      handler: editUser,
+    }
+  ]
+
   return (
     <>
     <main className={styles.main}>
-      <section className={styles.pageTitle}>
-        <span className={styles.username}>{user.username}</span>
-        <div className={styles.buttons_container}>
-          <ButtonDefault text={'Добавить задачу'} view={'default'} />
-          <ButtonDefault text={'Редактировать'} view={'primary'} handler={editUser} />
-        </div>
-      </section>
+      <PageTitle title={user.username} buttons={buttons} /> 
       <section className={styles.page}>
         <aside className={styles.user_info}>
           <div className={styles.avatar__border}>

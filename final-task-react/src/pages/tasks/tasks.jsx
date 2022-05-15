@@ -1,20 +1,27 @@
 import React from "react";
-// import { useLocation } from "react-router";
-// import Header from "../../components/header/header";
-// import { userStore } from "../../stores/usersStore/usersStore";
-// import { AppRoute } from "../../constants";
-// import { userStore } from "../../stores/usersStore/usersStore";
+import styles from './tasks.module.scss';
+import { observer } from 'mobx-react-lite';
+import PageTitle from "../../components/pageTitle/pageTitle";
+import Filter from "../../components/filter/filter";
 
-const Tasks = () => {
-  // const { pathname } = useLocation();
-  // const navigate = useNavigate();
-  // const { user } = userStore;
+const Tasks = observer(() => {
+
+  const button = [{
+    text: 'Добавить задачу',
+    view: 'primary',
+  }]
 
   return (
     <>
-      {/* <Header params={ pathname }/> */}
+    <main className={styles.main}>
+      <PageTitle title={'Задачи'} buttons={button} />
+      <section className={styles.page}>
+        <Filter />
+        <div className={styles.tasks}></div>
+      </section>
+    </main>
     </>
   )
-};
+});
 
 export default Tasks;

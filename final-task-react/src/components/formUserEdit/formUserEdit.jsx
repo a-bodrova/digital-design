@@ -5,7 +5,7 @@ import { observer } from 'mobx-react-lite';
 import { action } from "mobx";
 import { userStore } from "../../stores/usersStore/usersStore";
 
-const FormUserEdit = observer(({ user, open, onClose }) => {
+const FormUserEdit = observer(({ user, onClose }) => {
 
   const [userInfo, setUser] = useState({
     username: user.username,
@@ -20,8 +20,14 @@ const FormUserEdit = observer(({ user, open, onClose }) => {
 
   const handleSubmit = action((e) => {
     e.preventDefault();
-    userStore.editUser({...userInfo, id: user.id, login: user.login, password: user.password});
-    console.log(userStore.user.username);
+
+    userStore.editUser({
+      ...userInfo,
+      id: user.id,
+      login: user.login,
+      password: user.password,
+    });
+
     onClose();
   })
 

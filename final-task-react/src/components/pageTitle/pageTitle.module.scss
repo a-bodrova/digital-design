@@ -1,0 +1,16 @@
+@import '../../styles/index.scss';
+
+.pageTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  @include page-title;
+}
+
+.buttons_container {
+  display: flex;
+  gap: 10px;
+}

@@ -1,0 +1,23 @@
+@import '../../styles/index.scss';
+
+.filter_container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.input_title {
+  height: 29px;
+  padding: 5px 10px;
+  margin: 0;
+  @include common-text;
+  color: $color-text;
+
+  &::placeholder {
+    // padding: 5px 10px;
+    @include common-text;
+    color: $color-label-text;
+  }
+}

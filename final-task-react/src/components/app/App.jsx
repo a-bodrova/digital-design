@@ -16,9 +16,7 @@ const App = observer(() => {
     <Router>
       <Routes>
         <Route path={ AppRoute.START } element={ <Layout /> }>
-          <Route index element={ <Start /> }>
-
-          </Route>
+          <Route index element={ <Start /> }></Route>
           <Route element={<RequireAuth />}>
             <Route path={ AppRoute.TASKLIST } element={<Tasks /> }>
             </Route>

@@ -9,7 +9,7 @@ const Modal = observer(({user, open, onClose}) => {
     <>
       <div className={styles.overlay}>
         <div className={styles.modal}>
-          <FormUserEdit user={user} open={open} onClose={onClose} />
+          <FormUserEdit user={user} onClose={onClose} />
         </div>
       </div>
     </>,
