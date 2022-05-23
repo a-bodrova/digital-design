@@ -6,7 +6,7 @@
 
 .selectBox {
   padding: 5px 10px;
-  padding-right: 70px;
+  padding-right: 60px;
   @include common-text;
   background-color: $color-light;
   background-image: url('../../assets/v.svg');
@@ -25,6 +25,19 @@
       background-image: url('../../assets/^.svg');
       border-color: $color-primary-active;
       box-shadow: 0px 0px 2px 2px rgba(123, 97, 255, 0.5);
+    }
+
+    &.type {
+      width: 98px;
+    }
+
+    &.user {
+      width: 180px;
+    }
+
+    &.rank,
+    &.status {
+      width: 120px;
     }
   }
 

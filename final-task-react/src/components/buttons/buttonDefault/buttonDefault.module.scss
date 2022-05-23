@@ -60,3 +60,17 @@
     background-color: $color-disabled;
   }
 }
+
+.success {
+  background-color: $color-success;
+  color: $color-light;
+  border: 1px solid $color-success;
+
+  &:hover {
+    background-color: $color-success-hover;
+  }
+
+  &:active {
+    background-color: $color-success-active;
+  }
+}

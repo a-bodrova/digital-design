@@ -1,0 +1,35 @@
+@import '../../styles/index.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 20px;
+  @include common-text;
+  color: $color-text;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  display: flex;
+  color: $color-label-text;
+}
+
+.delete_btn {
+  margin-left: auto;
+  color: $color-error;
+  cursor: pointer;
+
+  &:hover {
+    color: $color-error-hover;
+  }
+
+  &:active {
+    color: $color-error-active;
+  }
+}

@@ -13,11 +13,11 @@ const Filter = observer(() => {
   return (
     <>
       <section className={styles.filter_container}>
-        <PseudoSelect options={Object.values(typeText)} title="Тип" /> 
+        <PseudoSelect options={Object.values(typeText)} title="Тип" type={'type'} /> 
         <input type="text" placeholder="Название задачи" className={styles.input_title} />
-        <PseudoSelect options={allUsernames} title="Пользователь" />
-        <PseudoSelect options={Object.values(statusText)} title="Статус" />
-        <PseudoSelect options={Object.values(rankText)} title="Приоритет" />
+        <PseudoSelect options={allUsernames} title="Пользователь" type={'user'} />
+        <PseudoSelect options={Object.values(statusText)} title="Статус" type={'status'} />
+        <PseudoSelect options={Object.values(rankText)} title="Приоритет" type={'rank'} />
         <ButtonDefault view='primary' text="Применить" />
       </section>
     </>

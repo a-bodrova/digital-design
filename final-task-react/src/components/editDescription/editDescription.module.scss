@@ -1,0 +1,32 @@
+@import '../../styles/index.scss';
+
+.wrapper {
+  max-width: 400px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include common-text;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+
+  &:last-child {
+    flex-grow: 1;
+  }
+}
+
+.label {
+  color: $color-label-text;
+}
+
+.textarea {
+  flex-grow: 1;
+  @include common-text;
+  text-overflow: ellipsis;
+  color: $color-text;
+  resize: none;
+}

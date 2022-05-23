@@ -1,0 +1,12 @@
+@import '../../styles/index.scss';
+
+.executor_wrapper {
+  width: 180px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.executor {
+  @include common-text;
+}

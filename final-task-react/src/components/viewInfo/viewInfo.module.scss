@@ -1,0 +1,21 @@
+@import '../../styles/index.scss';
+
+.wrapper {
+  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  gap: 20px;
+  @include common-text;
+  color: $color-text;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  color: $color-label-text;
+}

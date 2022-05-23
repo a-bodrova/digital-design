@@ -1,10 +1,10 @@
 export const AppRoute = {
-  MAIN: '/',
   START: '/',
   TASKLIST: '/tasks',
   USERLIST: '/users',
-  ID: ':id',
+  TASK_ID: '/tasks/:id',
   PROFILE: '/users/me',
+  EDIT_TASK: '/tasks/edit/:id',
 };
 
 export const typeText = {

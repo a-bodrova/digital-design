@@ -17,21 +17,21 @@ class UserStore {
     return this.allUsers.map(user => user.username);
   }
 
-  *getUser(id) {
+  async getUser(id) {
     if (id) {
-      const response = yield getUser(id);
+      const response = await getUser(id);
       this.user = { ...this.user, ...response };
     }
   }
 
-  *getAllUsers() {
-    const response = yield getAllUsers();
+  async getAllUsers() {
+    const response = await getAllUsers();
     this.allUsers = [ ...response ];
   }
 
-  *editUser(userInfo) {
-    yield editUser(userInfo);
-    yield this.getUser(this.user.id);
+  async editUser(userInfo) {
+    await editUser(userInfo);
+    await this.getUser(this.user.id);
   }
 }
 

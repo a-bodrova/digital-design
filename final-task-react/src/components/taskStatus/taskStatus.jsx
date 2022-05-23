@@ -4,7 +4,10 @@ import { statusText } from '../../constants';
 
 const TaskStatus = ({ status }) => {
   return (
-    <span className={styles.common + ' ' + styles[status]}>{statusText[status]}</span>
+    <div className={styles.status_wrapper}>
+      <span className={styles.common + ' ' + styles[status]}>{statusText[status]}</span>
+    </div>
+    
   )
 }
 

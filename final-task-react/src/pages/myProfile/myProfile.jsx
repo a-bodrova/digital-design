@@ -3,9 +3,10 @@ import styles from './myProfile.module.scss';
 import avatar from '../../assets/avatar-anonymous.jpg';
 import { observer } from "mobx-react-lite";
 import { userStore } from '../../stores/usersStore/usersStore';
-import PageTitle from "../pageTitle/pageTitle";
-import UserTaskListItem from '../userTaskListItem/userTaskListItem';
-import Modal from '../modal/modal';
+import PageTitle from "../../components/pageTitle/pageTitle";
+import UserTaskListItem from '../../components/userTaskListItem/userTaskListItem';
+import Divider from "../../components/divider/divider";
+import Modal from '../../components/modal/modal';
 
 const MyProfile = observer(() => {
 
@@ -43,7 +44,7 @@ const MyProfile = observer(() => {
             <p className={styles.about}>{user.about ? user.about : 'Расскажите о себе'}</p>
           </div>
         </aside>
-        <div className={styles.divider}></div>
+        <Divider />
         <section className={styles.taskslist}>
           <p className={styles.taskslist__title}>Задачи</p>
           <div className={styles.tasks}>

@@ -19,7 +19,8 @@ const Header = ({ path }) => {
             <Link
               to={AppRoute.TASKLIST}
               className={`${styles.nav__link} ${
-                path === AppRoute.TASKLIST && styles.active
+                (path === AppRoute.TASKLIST
+                  || path === AppRoute.TASK_ID) && styles.active
               }`}
             >
               Задачи

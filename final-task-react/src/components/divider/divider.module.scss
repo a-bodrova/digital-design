@@ -1,0 +1,8 @@
+@import '../../styles/index.scss';
+
+.divider {
+  width: 1px;
+  min-height: 100%;
+  background-color: $color-disabled;
+  align-self: stretch;
+}

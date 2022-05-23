@@ -16,7 +16,7 @@ import SelectCheckbox from "../SelectCheckbox/selectCheckbox";
 //   rank: 'low',
 // }
 
-const PseudoSelect = ({ options, title }) => {
+const PseudoSelect = ({ options, title, type }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -24,20 +24,22 @@ const PseudoSelect = ({ options, title }) => {
     setIsOpen(!isOpen);
   }
 
-  // const hideCheckboxes = () => {
-  //   setIsOpen(false);
-  // }
-
   return ( 
-    <div className={styles.multiselect} tabIndex='0'>
-      <div className={`${styles.selectBox} ${isOpen && styles.active}`} onClick={showCheckboxes}>
+    <div className={styles.multiselect}>
+      <div className={`${styles.selectBox} ${isOpen && styles.active} ${styles[type]}`} onClick={showCheckboxes}>
         {title}
       </div>
         {
           isOpen &&
-          <div className={styles.checkboxes} tabIndex='0' >
+          <div className={styles.checkboxes}>
 
-            {options.map((option, index) => <SelectCheckbox id={index} labelText={option} key={index} />)}
+            {
+              options.map((option, index) => <SelectCheckbox
+                                                id={index}
+                                                labelText={option}
+                                                key={index}
+                                              />)
+            }
           </div>
         }
     </div>

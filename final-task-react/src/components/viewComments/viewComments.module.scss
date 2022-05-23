@@ -1,0 +1,23 @@
+@import '../../styles/index.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  @include common-text;
+  overflow-y: auto;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  color: $color-label-text;
+}
+
+.error_message {
+  color: $color-error;
+}

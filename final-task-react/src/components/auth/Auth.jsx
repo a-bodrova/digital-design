@@ -27,13 +27,13 @@ const Auth = observer(() => {
 
     } catch (error) {
 
-      if (!error?.response) {
+      if (!error.response) {
 
         setErrorMsg('Нет соединения с сервером');
 
       } else {
 
-        setErrorMsg(error.response?.data.message);
+        setErrorMsg(error.response.data.message);
       }
     }
 

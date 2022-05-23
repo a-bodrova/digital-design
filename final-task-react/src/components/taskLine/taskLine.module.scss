@@ -1,0 +1,27 @@
+@import '../../styles/index.scss';
+
+.task_line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  gap: 14px;
+  padding: 20px 30px;
+  cursor: pointer;
+
+  &:nth-child(2n) {
+    background-color: $color-bg-item;
+  }
+
+  &:hover {
+    background-color: $color-label-text;
+  }
+}
+
+.task_title {
+  @include common-text;
+  max-width: 527px;
+  flex-grow: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

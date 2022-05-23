@@ -1,11 +1,18 @@
 @import '../../styles/index.scss';
 
+.rank_wrapper {
+  width: 120px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .common {
-  flex-basis: 13%;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
+  left: 18px;
   @include common-text($size: 14px, $height: 16px);
 
   & .rank_image {

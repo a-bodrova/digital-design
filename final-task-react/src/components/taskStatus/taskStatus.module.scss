@@ -1,5 +1,11 @@
 @import '../../styles/index.scss';
 
+.status_wrapper {
+  width: 120px;
+  display: flex;
+  justify-content: flex-start;
+}
+
 .common {
   height: 20px;
   display: flex;
