@@ -16,6 +16,7 @@ const TaskLine = observer(({task}) => {
     status,
     rank,
     id,
+    title,
   } = task;
 
   const { allUsers } = userStore;
@@ -24,7 +25,7 @@ const TaskLine = observer(({task}) => {
   return (
     <div className={styles.task_line}>
       <TaskType type={type} />
-      <Link to={id} className={styles.task_title}>{task.title}</Link>
+      <Link to={id} className={styles.task_title}>{title}</Link>
       <TaskPerformer username={user.username} />
       <TaskStatus status={status} />
       <TaskRank rank={rank} />

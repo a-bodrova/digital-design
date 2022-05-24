@@ -1,6 +1,7 @@
 @import '../../styles/index.scss';
 
 .main {
+  max-width: 1280px;
   width: 100%;
   display: flex;
   flex-direction: column;

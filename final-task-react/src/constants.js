@@ -5,6 +5,7 @@ export const AppRoute = {
   TASK_ID: '/tasks/:id',
   PROFILE: '/users/me',
   EDIT_TASK: '/tasks/edit/:id',
+  NEW_TASK: '/tasks/new',
 };
 
 export const typeText = {

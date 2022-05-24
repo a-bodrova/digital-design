@@ -1,4 +1,4 @@
-import { makeAutoObservable, onBecomeObserved } from "mobx";
+import { makeAutoObservable } from "mobx";
 import { getTasks } from '../../api';
 
 class TasksStore {
@@ -8,8 +8,6 @@ class TasksStore {
     makeAutoObservable(this, {}, {
       autoBind: true,
     });
-
-    onBecomeObserved(this, 'tenTasks', this.getTasks);
   }
 
   async getTasks(filter, page, limit) {

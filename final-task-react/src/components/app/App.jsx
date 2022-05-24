@@ -19,12 +19,13 @@ const App = observer(() => {
       <Routes>
         <Route path={ AppRoute.START } element={ <Layout /> }>
           <Route index element={ <Start /> }></Route>
-          <Route element={<RequireAuth />}>
-            <Route path={ AppRoute.TASKLIST } element={<Tasks /> }></Route>
-            <Route path={AppRoute.TASK_ID} element={<Task />}></Route>
-            <Route path={AppRoute.EDIT_TASK} element={<EditTask />}></Route>
-            <Route path={ AppRoute.USERLIST } element={<Users /> }></Route>
-            <Route path={ AppRoute.PROFILE } element={<MyProfile />}></Route>
+          <Route element={ <RequireAuth /> }>
+            <Route path={ AppRoute.TASKLIST } element={ <Tasks /> }></Route>
+            <Route path={ AppRoute.NEW_TASK } element={ <EditTask /> }></Route>
+            <Route path={ AppRoute.TASK_ID } element={ <Task /> }></Route>
+            <Route path={ AppRoute.EDIT_TASK } element={ <EditTask /> }></Route>
+            <Route path={ AppRoute.USERLIST } element={ <Users /> }></Route>
+            <Route path={ AppRoute.PROFILE } element={ <MyProfile /> }></Route>
           </Route>
         </Route>
           <Route path="*" element={ <Error /> }></Route>

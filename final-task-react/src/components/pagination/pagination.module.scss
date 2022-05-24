@@ -1,23 +1,19 @@
 @import '../../styles/index.scss';
 
 .wrapper {
-  flex-basis: 36%;
+  max-width: 1280px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
   @include common-text;
 }
 
-.block {
+.container {
   display: flex;
-  flex-direction: column;
   gap: 5px;
 }
 
-.label {
+.viewed {
   color: $color-label-text;
-}
-
-.error_message {
-  color: $color-error;
 }
