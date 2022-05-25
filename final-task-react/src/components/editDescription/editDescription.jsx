@@ -1,10 +1,11 @@
 import styles from "./editDescription.module.scss";
 
-const EditDescription = ({ setter, editedTask }) => {
+const EditDescription = ({ setEditedTask, editedTask }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setter(name, value);
+    console.log({setEditedTask, editedTask, name, value});
+    setEditedTask({ ...editedTask, [name]: value });
   }
 
   return (
@@ -27,8 +28,8 @@ const EditDescription = ({ setter, editedTask }) => {
             id="description"
             name="description"
             className={styles.textarea}
-            defaultValue={editedTask.description}
             onChange={handleChange}
+            defaultValue={editedTask.description}
             required
           ></textarea>
       </div>

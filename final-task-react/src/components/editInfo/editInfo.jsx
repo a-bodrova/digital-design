@@ -2,16 +2,46 @@ import styles from './editInfo.module.scss';
 import { userStore } from '../../stores/usersStore/usersStore';
 import { typeText, rankText } from '../../constants';
 
-const EditInfo = ({setter, editedTask}) => {
+const EditInfo = ({setEditedTask, editedTask}) => {
 
   const { allUsers } = userStore;
-  const performer = allUsers.filter(user => user.id === editedTask.assignedId).pop();
-
-  const handleChange = (e) => {
+  
+  const getUserById = (id) => {
+    return allUsers.filter(user => user.id === id).pop();
+  }
+  
+  const getIdByUsername = (username) => {
+    return allUsers.filter(user => user.username === username).pop().id;
+  }
+  
+  const handlePerformerChange = (e) => {
     const { name, value } = e.target;
-    setter(name, value);
+    const val = getIdByUsername(value);
+    setEditedTask({...editedTask, [name]: val});
+  }
+  
+  const handleTypeChange = (e) => {
+    const { name, value } = e.target;
+
+    for (const key of Object.keys(typeText)) {
+      if (typeText[key] === value) {
+        setEditedTask({...editedTask, [name]: key});
+      }
+    }
+  }
+  
+  const handleRankChange = (e) => {
+    const { name, value } = e.target;
+
+    for (const key of Object.keys(rankText)) {
+
+      if (rankText[key] === value) {
+        setEditedTask({...editedTask, [name]: key});
+      }
+    }
   }
 
+  const performer = getUserById(editedTask.assignedId);
 
   return (
     <section className={styles.wrapper}>
@@ -22,7 +52,7 @@ const EditInfo = ({setter, editedTask}) => {
           name='assignedId'
           className={styles.select}
           defaultValue={performer.username}
-          onChange={handleChange}
+          onChange={handlePerformerChange}
         >
             {
               allUsers.map(user => {
@@ -37,8 +67,8 @@ const EditInfo = ({setter, editedTask}) => {
           id='type'
           name='type'
           className={styles.select}
-          defaultValue={editedTask.type}
-          onChange={handleChange}
+          defaultValue={typeText[editedTask.type]}
+          onChange={handleTypeChange}
         >
           {
             Object.values(typeText).map((type, index) => <option value={type} key={index}>{type}</option>)
@@ -51,8 +81,8 @@ const EditInfo = ({setter, editedTask}) => {
             id='rank'
             name='rank'
             className={styles.select}
-            defaultValue={editedTask.rank}
-            onChange={handleChange}
+            defaultValue={rankText[editedTask.rank]}
+            onChange={handleRankChange}
           >
             {
               Object.values(rankText).map((rank, index) => <option value={rank} key={index}>{rank}</option>)

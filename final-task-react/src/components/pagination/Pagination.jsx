@@ -4,8 +4,7 @@ import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
 
 const Pagination = ({ currentPage, setCurrentPage, currentChunkLength, tasksTotal, limit }) => {
 
-  const pagesTotal = Math.ceil(tasksTotal / limit);
-  console.log({currentPage, limit});
+  const pagesTotal = Math.floor(tasksTotal / limit);
 
   const handlePrev = () => {
     if (currentPage > 0) {

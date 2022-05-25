@@ -9,8 +9,8 @@ export const AppRoute = {
 };
 
 export const typeText = {
-  bug: 'Ошибка',
   task: 'Задача',
+  bug: 'Ошибка',
 }
 
 export const statusText = {

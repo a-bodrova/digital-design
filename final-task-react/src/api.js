@@ -85,8 +85,9 @@ export const deleteTask = async (taskId) => {
 }
 
 export const sendTask = async (taskInfo) => {
+  console.log(taskInfo);
+  
   const body = {
-    id: taskInfo.id || '',
     userId: taskInfo.userId || 'Anna',
     assignedId: taskInfo.assignedId || '',
     title: taskInfo.title || 'New task',
@@ -98,6 +99,9 @@ export const sendTask = async (taskInfo) => {
     status: taskInfo.status || "opened",
     rank: taskInfo.rank || "low",
   }
+  
+  if (taskInfo.id) body.id = taskInfo.id;
+
   const response = await axios.put(endpoint.SENDTASK, JSON.stringify(body), headers);
 
   return response.data;

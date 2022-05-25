@@ -6,15 +6,15 @@ import { userStore } from '../../stores/usersStore/usersStore';
 import { getComments, sendComment } from '../../api';
 
 const ViewComments = ({ taskId }) => {
+  const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
   const [errMsg, setErrMsg] = useState(null);
-
+  
   useEffect(() => {
     const loadComments = async (id) => {
       try {
         const response = await getComments(id);
-        const comments = [...response];
-        setComments(comments);
+        setComments([...response]);
 
       } catch (error) {
         setErrMsg(error.message);
@@ -22,17 +22,16 @@ const ViewComments = ({ taskId }) => {
     }
     
     loadComments(taskId);
-  }, [taskId, comments]);
+  }, [taskId, comment]);
 
   const { user } = userStore;
 
-  const [comment, setComment] = useState('');
 
   const handleChange = (e) => {
     setComment(e.target.value);
   }
 
-  const handleAddComment = () => {
+  const handleAddComment = async () => {
     const body = {
       taskId,
       userId: user.id,
@@ -41,8 +40,10 @@ const ViewComments = ({ taskId }) => {
       dateOfUpdate: new Date().toISOString(),
     }
 
-    sendComment(body);
+    await sendComment(body);
     setComment('');
+    const response = await getComments(taskId);
+    setComments([...response]);
   }
 
   return (
@@ -63,7 +64,7 @@ const ViewComments = ({ taskId }) => {
       {
         !errMsg
         ?
-        comments.map(comment => <ViewComment comment={comment} key={comment.id} />)
+        comments.map(comment => <ViewComment comment={comment} comments={comments} setComments={setComments} key={comment.id} />)
         :
         <p className={styles.error_message}>{errMsg}</p>
       }

@@ -4,7 +4,7 @@ import { userStore } from '../../stores/usersStore/usersStore';
 import moment from 'moment';
 import { deleteComment } from '../../api';
 
-const ViewComment = ({comment}) => {
+const ViewComment = ({comment, comments, setComments}) => {
 
   const { allUsers, user } = userStore;
   const { dateOfUpdate } = comment;
@@ -13,8 +13,10 @@ const ViewComment = ({comment}) => {
   const authorOfComment = allUsers.filter(user => comment.userId === user.id).pop();
   const isUserAuthor = user.id === comment.userId;
 
-  const handleDeleteComment = () => {
-    deleteComment(comment.id);
+  const handleDeleteComment = async () => {
+    await deleteComment(comment.id);
+    const newComments = comments.filter(item => item.id !== comment.id);
+    setComments([...newComments]);
   }
 
   return (

@@ -3,11 +3,9 @@ import styles from './tasks.module.scss';
 import { observer } from 'mobx-react-lite';
 import PageTitle from "../../components/pageTitle/pageTitle";
 import Filter from "../../components/filter/filter";
-// import { tasks } from "../../stores/tasksStore/tasks";
 import TaskLine from "../../components/taskLine/taskLine";
 import { useNavigate } from "react-router";
 import { AppRoute } from "../../constants";
-// import { action } from "mobx";
 import { getTasks } from "../../api";
 import Pagination from "../../components/pagination/Pagination";
 import { action } from "mobx";
@@ -36,10 +34,9 @@ const Tasks = observer(() => {
   useEffect(() => {
     const loadTasks = action(async () => {
       const chunk = await getTasks(filter, currentPage, limit);
-      setLimit(limit);
       setTasksChunk([...chunk.data]);
       tasks.tenTasks = [...chunk.data];
-      setCurrentChunkLength(tasksChunk.length);
+      setCurrentChunkLength(chunk.data.length);
       setTasksTotal(chunk.total);
     })
 
@@ -49,7 +46,7 @@ const Tasks = observer(() => {
       setErrorMsg(error.message);
     }
     
-  }, [filter, currentPage, limit, tasksChunk]);
+  }, [filter, currentPage, limit]);
   
   
 

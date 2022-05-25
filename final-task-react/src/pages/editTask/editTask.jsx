@@ -16,9 +16,10 @@ const EditTask = () => {
   const { user } = userStore;
 
   const { id } = useParams();
-  
+
   const task = id
-    ? tasks.tenTasks.filter(task => id === task.id).pop()
+    ? 
+    tasks.tenTasks.filter(task => id === task.id).pop()
     : {
       userId: user.id,
       assignedId: user.id,
@@ -31,7 +32,7 @@ const EditTask = () => {
       status: 'opened',
       rank: 'low',
     };
-
+  console.log(task);
 
   const [editedTask, setEditedTask] = useState({...task});
 
@@ -39,14 +40,11 @@ const EditTask = () => {
     navigate(-1);
   }
 
-  const handleChange = (name, value) => {
-    setEditedTask({ ...editedTask, [name]: value });
-    tasks.getTasks(null, 0, 10);
-  }
-
-  const handleSave = () => {
-    sendTask(editedTask);
-    navigate(-1);
+  const handleSave = async () => {
+    await sendTask(editedTask);
+    console.log('handleSave: ', {editedTask});
+    tasks.getTasks({}, 5, 10);
+    navigate(-2);
   }
 
   const buttons = [
@@ -69,9 +67,9 @@ const EditTask = () => {
     <main className={styles.main}>
       <PageTitle title={title} buttons={buttons} />
       <section className={styles.page}>
-        <EditInfo setter={handleChange} editedTask={task} />
+        <EditInfo setEditedTask={setEditedTask} editedTask={editedTask} />
         <Divider />
-        <EditDescription setter={handleChange} editedTask={task} />
+        <EditDescription setEditedTask={setEditedTask} editedTask={editedTask} />
       </section>
     </main>
 
