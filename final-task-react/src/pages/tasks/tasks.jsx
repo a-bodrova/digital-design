@@ -6,7 +6,6 @@ import Filter from "../../components/filter/filter";
 import TaskLine from "../../components/taskLine/taskLine";
 import { useNavigate } from "react-router";
 import { AppRoute } from "../../constants";
-import { getTasks } from "../../api";
 import Pagination from "../../components/pagination/Pagination";
 import { action } from "mobx";
 import { tasks } from "../../stores/tasksStore/tasks";
@@ -15,29 +14,24 @@ import { tasks } from "../../stores/tasksStore/tasks";
 const Tasks = observer(() => {
   
   
-  const [filter, setFilter] = useState({
-    query: '',
-    assignedUsers: [],
-    userIds: [],
-    type: [],
-    status: [],
-    rank: [],
-  });
+  const [filter, setFilter] = useState({...tasks.filter});
 
   const [currentPage, setCurrentPage] = useState(0);
-  const [limit, setLimit] = useState(10);
   const [tasksChunk, setTasksChunk] = useState([]);
   const [currentChunkLength, setCurrentChunkLength] = useState(0);
   const [tasksTotal, setTasksTotal] = useState(0);
   const [errorMsg, setErrorMsg] = useState(null);
 
+  const [update, setUpdate] = useState(false);
+
   useEffect(() => {
     const loadTasks = action(async () => {
-      const chunk = await getTasks(filter, currentPage, limit);
-      setTasksChunk([...chunk.data]);
-      tasks.tenTasks = [...chunk.data];
-      setCurrentChunkLength(chunk.data.length);
-      setTasksTotal(chunk.total);
+      await tasks.getTasks(filter, currentPage);
+      tasks.page = currentPage;
+
+      setTasksChunk([...tasks.tenTasks]);
+      setCurrentChunkLength(tasks.tenTasks.length);
+      setTasksTotal(tasks.total);
     })
 
     try {
@@ -46,15 +40,16 @@ const Tasks = observer(() => {
       setErrorMsg(error.message);
     }
     
-  }, [filter, currentPage, limit]);
+  }, [filter, currentPage, update]);
   
   
 
   const navigate = useNavigate();
 
-  const handleAddNewTask = () => {
+  const handleAddNewTask = action(() => {
+    tasks.page = currentPage;
     navigate(AppRoute.NEW_TASK);
-  }
+  })
 
   const button = [{
     text: 'Добавить задачу',
@@ -69,14 +64,25 @@ const Tasks = observer(() => {
         <Filter filter={filter} setFilter={setFilter} />
         <div className={styles.tasks}>
           {
-            !errorMsg
+            !errorMsg && tasksChunk.length
               ?
-              tasksChunk.map(task => <TaskLine task={task} key={task.id} />)
+              tasksChunk.map(task => {
+                return (
+                  <TaskLine
+                    task={task}
+                    key={task.id}
+                    currentPage={currentPage}
+                    setTasksChunk={setTasksChunk}
+                    setUpdate={setUpdate}
+                    update={update}
+                  />
+                )
+              })
               :
-              <p className={styles.error_message}>{errorMsg}</p>
+              <p className={styles.error_message}>{errorMsg || 'Ничего не найдено'}</p>
           }
         </div>
-        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} tasksTotal={tasksTotal} limit={limit} currentChunkLength={currentChunkLength} />
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} tasksTotal={tasksTotal} limit={tasks.limit} currentChunkLength={currentChunkLength} />
       </section>
     </main>
   )

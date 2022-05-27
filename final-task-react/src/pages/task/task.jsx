@@ -63,6 +63,12 @@ const Task = () => {
     navigate(`/tasks/edit/${id}`);
   }
 
+  const handleDelete = async () => {
+    await tasks.deleteTask(id);
+    await tasks.getTasks();
+    navigate(-1);
+  } 
+
   const buttons = [
     {
       text: 'Редактировать',
@@ -72,6 +78,7 @@ const Task = () => {
     {
       text: 'Удалить',
       view: 'error',
+      handler: handleDelete,
     },
   ]
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import styles from './viewComments.module.scss';
 import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
 import ViewComment from '../viewComment/viewComment';
@@ -26,10 +26,11 @@ const ViewComments = ({ taskId }) => {
 
   const { user } = userStore;
 
-
   const handleChange = (e) => {
     setComment(e.target.value);
   }
+
+  const textareaRef = useRef();
 
   const handleAddComment = async () => {
     const body = {
@@ -44,6 +45,7 @@ const ViewComments = ({ taskId }) => {
     setComment('');
     const response = await getComments(taskId);
     setComments([...response]);
+    textareaRef.current.focus();
   }
 
   return (
@@ -51,6 +53,7 @@ const ViewComments = ({ taskId }) => {
       <div className={styles.block}>
         <label htmlFor='commentText' className={styles.label}>{`Комментарии (${comments.length})`}
           <textarea
+          ref={textareaRef}
             name="commentText"
             id="commentText"
             rows="4"

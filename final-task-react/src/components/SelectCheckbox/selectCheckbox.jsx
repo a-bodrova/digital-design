@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import styles from './selectCheckbox.module.scss';
 
-const SelectCheckbox = ({ id, labelText }) => {
+const SelectCheckbox = ({ id, labelText, type, innerFilter, setInnerFilter }) => {
 
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleChange = () => {
+  const handleChange = (e) => {
+    const { name, checked } = e.target;
     setIsChecked(!isChecked);
+    setInnerFilter({...innerFilter, [name]: checked});
   }
 
   return (
@@ -14,10 +16,10 @@ const SelectCheckbox = ({ id, labelText }) => {
       <input
         className={styles.checkbox}
         type="checkbox"
-        name={id}
+        name={type}
         id={id}
-        value={labelText}
-        checked={isChecked}
+        // value={labelText}
+        defaultChecked={isChecked}
         onChange={handleChange}
       />
       {labelText}

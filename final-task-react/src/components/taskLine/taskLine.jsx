@@ -9,7 +9,7 @@ import { userStore } from "../../stores/usersStore/usersStore";
 import { observer } from "mobx-react-lite";
 import { Link } from "react-router-dom";
 
-const TaskLine = observer(({task}) => {
+const TaskLine = observer(({task, currentPage, setTasksChunk, setUpdate, update}) => {
 
   const {
     type,
@@ -25,11 +25,19 @@ const TaskLine = observer(({task}) => {
   return (
     <div className={styles.task_line}>
       <TaskType type={type} />
-      <Link to={id} className={styles.task_title}>{title}</Link>
+      <div className={styles.task_title}>
+        <Link to={id} >{title}</Link>
+      </div>
       <TaskPerformer username={user.username} />
       <TaskStatus status={status} />
       <TaskRank rank={rank} />
-      <TaskMenu id={id} />
+      <TaskMenu
+        id={id}
+        setTasksChunk={setTasksChunk}
+        currentPage={currentPage}
+        setUpdate={setUpdate}
+        update={update}
+      />
     </div>
   )
 })

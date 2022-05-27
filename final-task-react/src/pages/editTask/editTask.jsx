@@ -26,13 +26,10 @@ const EditTask = () => {
       title: 'Новая задача',
       description: 'Описание',
       type: 'task',
-      dateOfCreation: new Date().toISOString(),
-      dateOfUpdate: new Date().toISOString(),
       timeInMinutes: 0,
       status: 'opened',
       rank: 'low',
     };
-  console.log(task);
 
   const [editedTask, setEditedTask] = useState({...task});
 
@@ -42,9 +39,9 @@ const EditTask = () => {
 
   const handleSave = async () => {
     await sendTask(editedTask);
-    console.log('handleSave: ', {editedTask});
-    tasks.getTasks({}, 5, 10);
-    navigate(-2);
+    tasks.getTasks();
+
+    id ? navigate(-2) : navigate(-1);
   }
 
   const buttons = [

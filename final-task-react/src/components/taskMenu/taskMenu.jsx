@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import styles from './taskMenu.module.scss';
+import { observer } from "mobx-react-lite";
 import TaskDropdown from '../taskDropdown/taskDropdown';
 
-const TaskMenu = ({id}) => {
+const TaskMenu = observer(({id, setTasksChunk, currentPage, setUpdate, update}) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -17,13 +18,19 @@ const TaskMenu = ({id}) => {
           <span className={styles.burger_line}></span>
           {
             isOpen &&
-            <TaskDropdown taskId={id} />
+            <TaskDropdown
+              taskId={id}
+              setTasksChunk={setTasksChunk}
+              currentPage={currentPage}
+              setUpdate={setUpdate}
+              update={update}
+            />
           }
         </div>
       </div>
       
     </>
   )
-}
+})
 
 export default TaskMenu;

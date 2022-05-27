@@ -17,6 +17,14 @@ class UserStore {
     return this.allUsers.map(user => user.username);
   }
 
+  getUsernameByAssignedId(assignedId) {
+    return this.allUsers.filter(user => user.assignedId === assignedId).username;
+  }
+
+  getAssignedIdByUsername(username) {
+    return this.allUsers.filter(user => user.username === username).assignedId;
+  }
+
   async getUser(id) {
     if (id) {
       const response = await getUser(id);

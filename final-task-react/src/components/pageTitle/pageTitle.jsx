@@ -6,12 +6,12 @@ import TaskStatus from '../taskStatus/taskStatus';
 const PageTitle = ({title, buttons, status}) => {
   return (
   <section className={styles.pageTitle}>
-    <span className={styles.title}>{title}
+    <div className={styles.title}>{title}
       {
         status &&
           <TaskStatus status={status} />
       }
-    </span>
+    </div>
     <div className={styles.buttons_container}>
       {
         buttons.map((buttonInfo, index) => <ButtonDefault

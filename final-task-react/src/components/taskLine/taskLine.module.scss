@@ -21,7 +21,9 @@
 .task_title {
   @include common-text;
   max-width: 527px;
+  height: 100%;
   flex-grow: 1;
   text-overflow: ellipsis;
   white-space: nowrap;
+  overflow: hidden;
 }

@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from './pseudoSelect.module.scss';
 import SelectCheckbox from "../SelectCheckbox/selectCheckbox";
 
-// const TASK = {
-//   id: 'string',
-//   type: 'bug',
-//   userId: 'string',
-//   assignedId: 'string',
-//   title: 'Заголовок',
-//   description: 'Описание',
-//   dateOfCreation: '2022-05-13T09:54:27.630Z',
-//   dateOfUpdate: '2022-05-13T09:54:27.630Z',
-//   timeInMinutes: '0',
-//   status: 'opened',
-//   rank: 'low',
-// }
 
-const PseudoSelect = ({ options, title, type }) => {
+const PseudoSelect = ({ options, title, type, innerFilter, setInnerFilter }) => {
 
   const [isOpen, setIsOpen] = useState(false);
+  
+  const names = Object.keys(options);
+  const labels = Object.values(options);
+
+  const [storeSelect, setStoreSelect] = useState({...options});
+
+  // useEffect(() => {
+  //   setInnerFilter({...innerFilter, [type]: {...storeSelect}});
+  // }, [storeSelect, type])
 
   const showCheckboxes = (e) => {
     setIsOpen(!isOpen);
@@ -34,10 +30,13 @@ const PseudoSelect = ({ options, title, type }) => {
           <div className={styles.checkboxes}>
 
             {
-              options.map((option, index) => <SelectCheckbox
+              labels.map((label, index) => <SelectCheckbox
                                                 id={index}
-                                                labelText={option}
+                                                labelText={label}
                                                 key={index}
+                                                type={names[index]}
+                                                innerFilter={innerFilter}
+                                                setInnerFilter={setInnerFilter}
                                               />)
             }
           </div>

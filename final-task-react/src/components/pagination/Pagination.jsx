@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './pagination.module.scss';
 import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
+import ButtonDigit from '../buttons/buttonDigit/buttonDigit';
 
 const Pagination = ({ currentPage, setCurrentPage, currentChunkLength, tasksTotal, limit }) => {
 
@@ -10,12 +11,14 @@ const Pagination = ({ currentPage, setCurrentPage, currentChunkLength, tasksTota
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
     }
+    console.log({prev: {currentPage, pagesTotal}});
   }
   
   const handleNext = () => {
     if (currentPage < pagesTotal) {
       setCurrentPage(currentPage + 1);
     }
+    console.log({next: {currentPage, pagesTotal}});
   }
 
   return (
@@ -26,14 +29,29 @@ const Pagination = ({ currentPage, setCurrentPage, currentChunkLength, tasksTota
           view={ currentPage === 0 ? 'disabled' : 'default' }
           handler={handlePrev}
         />
-        <ButtonDefault text={currentPage + 1} view='primary' />
+
+        {
+          [...Array(Math.ceil(tasksTotal / limit))].map((page, index) => (
+            <ButtonDigit
+              key={index}
+              text={index + 1}
+              view={index === currentPage ? 'primary' : 'default'}
+              handler={() => setCurrentPage(index)}
+            />
+          ))
+        }
+
         <ButtonDefault
           text='Вперед'
-          view={ currentPage < pagesTotal ? 'default' : 'disabled' }
+          view={ currentPage < tasksTotal / limit - 1 ? 'default' : 'disabled' }
           handler={handleNext}
         />
       </div>
-      <span className={styles.viewed}>{`Показано ${currentPage * limit + 1} - ${currentPage * limit + currentChunkLength} из ${tasksTotal}`}</span>
+      <span
+        className={styles.viewed}
+        >
+        {`Показано ${currentPage * limit + 1} - ${currentPage * limit + currentChunkLength} из ${tasksTotal}`}
+      </span>
     </div>
   )
 }

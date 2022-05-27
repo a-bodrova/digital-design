@@ -93,8 +93,6 @@ export const sendTask = async (taskInfo) => {
     title: taskInfo.title || 'New task',
     description: taskInfo.description || 'description',
     type: taskInfo.type || 'task',
-    dateOfCreation: taskInfo.dateOfCreation || new Date().toISOString(),
-    dateOfUpdate: taskInfo.dateOfUpdate || new Date().toISOString(),
     timeInMinutes: taskInfo.timeInMinutes || 0,
     status: taskInfo.status || "opened",
     rank: taskInfo.rank || "low",
