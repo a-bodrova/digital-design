@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { observer } from "mobx-react-lite";
+
 import styles from './userWidget.module.scss';
 import avatar from '../../assets/avatar-anonymous.jpg';
 import { userStore } from '../../stores/usersStore/usersStore';

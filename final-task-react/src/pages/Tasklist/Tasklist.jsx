@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import styles from './tasks.module.scss';
+import { action } from "mobx";
 import { observer } from 'mobx-react-lite';
+import { useNavigate } from "react-router";
+
+import styles from './taskList.module.scss';
 import PageTitle from "../../components/pageTitle/pageTitle";
 import Filter from "../../components/filter/filter";
-import TaskLine from "../../components/taskLine/taskLine";
-import { useNavigate } from "react-router";
+import TaskItem from "../../components/taskItem/taskItem";
 import { AppRoute } from "../../constants";
 import Pagination from "../../components/pagination/Pagination";
-import { action } from "mobx";
 import { tasks } from "../../stores/tasksStore/tasks";
 
 
-const Tasks = observer(() => {
+const TaskList = observer(() => {
   
   
   const [filter, setFilter] = useState({...tasks.filter});
@@ -51,15 +52,17 @@ const Tasks = observer(() => {
     navigate(AppRoute.NEW_TASK);
   })
 
-  const button = [{
-    text: 'Добавить задачу',
-    view: 'primary',
-    handler: handleAddNewTask,
-  }];
+  const button = [
+    {
+      text: 'Добавить задачу',
+      view: 'primary',
+      handler: handleAddNewTask,
+    },
+  ];
 
   return (
     <main className={styles.main}>
-      <PageTitle title={'Задачи'} buttons={button} />
+      <PageTitle title='Задачи' buttons={button} />
       <section className={styles.page}>
         <Filter filter={filter} setFilter={setFilter} />
         <div className={styles.tasks}>
@@ -68,7 +71,7 @@ const Tasks = observer(() => {
               ?
               tasksChunk.map(task => {
                 return (
-                  <TaskLine
+                  <TaskItem
                     task={task}
                     key={task.id}
                     currentPage={currentPage}
@@ -82,10 +85,16 @@ const Tasks = observer(() => {
               <p className={styles.error_message}>{errorMsg || 'Ничего не найдено'}</p>
           }
         </div>
-        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} tasksTotal={tasksTotal} limit={tasks.limit} currentChunkLength={currentChunkLength} />
+        <Pagination
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
+          itemsTotal={tasksTotal}
+          limit={tasks.limit}
+          currentChunkLength={currentChunkLength}
+        />
       </section>
     </main>
   )
 });
 
-export default Tasks;
+export default TaskList;

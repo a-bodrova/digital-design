@@ -3,7 +3,7 @@ import styles from './taskMenu.module.scss';
 import { observer } from "mobx-react-lite";
 import TaskDropdown from '../taskDropdown/taskDropdown';
 
-const TaskMenu = observer(({id, setTasksChunk, currentPage, setUpdate, update}) => {
+const TaskMenu = observer(({id, taskStatus, currentPage, setUpdate, update}) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -20,7 +20,7 @@ const TaskMenu = observer(({id, setTasksChunk, currentPage, setUpdate, update}) 
             isOpen &&
             <TaskDropdown
               taskId={id}
-              setTasksChunk={setTasksChunk}
+              taskStatus={taskStatus}
               currentPage={currentPage}
               setUpdate={setUpdate}
               update={update}

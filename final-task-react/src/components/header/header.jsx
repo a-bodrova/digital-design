@@ -1,7 +1,8 @@
-import styles from './header.module.scss';
-import Logo from '../../assets/Logo.svg';
 import React from "react";
 import { Link } from 'react-router-dom';
+
+import styles from './header.module.scss';
+import Logo from '../../assets/Logo.svg';
 import { AppRoute } from '../../constants';
 import UserWidget from '../userWidget/userWidget';
 
@@ -9,9 +10,9 @@ const Header = ({ path }) => {
 
   return (
     <header className={styles.header}>
-      <Link to={AppRoute.START}>
+      <div>
         <img src={Logo} alt="logo"></img>
-      </Link>
+      </div>
 
       {path !== AppRoute.START && (
         <>

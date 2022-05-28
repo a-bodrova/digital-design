@@ -7,6 +7,12 @@ import { typeText, statusText, rankText } from "../../constants";
 import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
 import { tasks } from "../../stores/tasksStore/tasks";
 
+/**
+ * @params filter: {
+ * }
+ * 
+ */
+
 const Filter = observer(({filter, setFilter}) => {
 
   const { allUsernames } = userStore;
@@ -22,7 +28,7 @@ const Filter = observer(({filter, setFilter}) => {
     e.preventDefault();
 
     setFilter({ ...filter, ...innerFilter });
-    await tasks.getTasks(filter, 0, 10);
+    // await tasks.getTasks(filter, 0, 10);
     // console.log(filter);
 
   }

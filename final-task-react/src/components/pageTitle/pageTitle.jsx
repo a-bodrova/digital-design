@@ -3,7 +3,7 @@ import styles from './pageTitle.module.scss';
 import ButtonDefault from "../buttons/buttonDefault/buttonDefault";
 import TaskStatus from '../taskStatus/taskStatus';
 
-const PageTitle = ({title, buttons, status}) => {
+const PageTitle = ({title, buttons, status, handler}) => {
   return (
   <section className={styles.pageTitle}>
     <div className={styles.title}>{title}
@@ -17,7 +17,7 @@ const PageTitle = ({title, buttons, status}) => {
         buttons.map((buttonInfo, index) => <ButtonDefault
               text={buttonInfo.text}
               view={buttonInfo.view}
-              handler={buttonInfo.handler}
+              handler={buttonInfo.handler || (() => handler(buttonInfo.newStatus))}
               key={index}
             />
         )

@@ -1,15 +1,16 @@
 import React from "react";
-import styles from './taskLine.module.scss';
+import { observer } from "mobx-react-lite";
+import { Link } from "react-router-dom";
+
+import styles from './taskItem.module.scss';
 import TaskType from '../taskType/taskType';
 import TaskStatus from '../taskStatus/taskStatus';
 import TaskRank from "../taskRank/taskRank";
 import TaskMenu from "../taskMenu/taskMenu";
 import TaskPerformer from '../taskPerformer/taskPerformer';
 import { userStore } from "../../stores/usersStore/usersStore";
-import { observer } from "mobx-react-lite";
-import { Link } from "react-router-dom";
 
-const TaskLine = observer(({task, currentPage, setTasksChunk, setUpdate, update}) => {
+const TaskItem = observer(({task, currentPage, setTasksChunk, setUpdate, update}) => {
 
   const {
     type,
@@ -25,15 +26,15 @@ const TaskLine = observer(({task, currentPage, setTasksChunk, setUpdate, update}
   return (
     <div className={styles.task_line}>
       <TaskType type={type} />
-      <div className={styles.task_title}>
-        <Link to={id} >{title}</Link>
-      </div>
+      <Link to={id} className={styles.task_title}>
+        <span>{title}</span>
+      </Link>
       <TaskPerformer username={user.username} />
       <TaskStatus status={status} />
       <TaskRank rank={rank} />
       <TaskMenu
         id={id}
-        setTasksChunk={setTasksChunk}
+        taskStatus={status}
         currentPage={currentPage}
         setUpdate={setUpdate}
         update={update}
@@ -42,4 +43,4 @@ const TaskLine = observer(({task, currentPage, setTasksChunk, setUpdate, update}
   )
 })
 
-export default TaskLine;
+export default TaskItem;

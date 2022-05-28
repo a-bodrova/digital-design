@@ -25,3 +25,54 @@ export const rankText = {
   medium: 'Средний',
   high: 'Высокий',
 }
+
+export const statusButtonList = {
+  opened: [
+    {
+      newStatus: 'inProgress',
+      text: 'Взять в работу',
+      view: 'default',
+    },
+    {
+      newStatus: 'complete',
+      text: 'Готово',
+      view: 'success',
+    },
+  ],
+  inProgress: [
+    {
+      newStatus: 'opened',
+      text: 'Переоткрыть',
+      view: 'default',
+    },
+    {
+      newStatus: 'testing',
+      text: 'На тестирование',
+      view: 'default',
+    },
+    {
+      newStatus: 'complete',
+      text: 'Готово',
+      view: 'success',
+    },
+  ],
+  testing: [
+    {
+      newStatus: 'opened',
+      text: 'Переоткрыть',
+      view: 'default',
+    },
+    {
+      newStatus: 'complete',
+      text: 'Готово',
+      view: 'success',
+    },
+  ],
+  complete: [
+    {
+      newStatus: 'opened',
+      text: 'Переоткрыть',
+      view: 'default',
+    },
+  ]
+};

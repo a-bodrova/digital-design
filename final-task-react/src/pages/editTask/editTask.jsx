@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Divider from '../../components/divider/divider';
 import EditDescription from '../../components/editDescription/editDescription';
 import { sendTask } from '../../api';
+import { AppRoute } from '../../constants';
 
 const EditTask = () => {
 
@@ -41,7 +42,7 @@ const EditTask = () => {
     await sendTask(editedTask);
     tasks.getTasks();
 
-    id ? navigate(-2) : navigate(-1);
+    id ? navigate(AppRoute.TASKLIST) : navigate(-1);
   }
 
   const buttons = [
