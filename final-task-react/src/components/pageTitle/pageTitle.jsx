@@ -13,14 +13,14 @@ const PageTitle = ({title, buttons, status, handler}) => {
       }
     </div>
     <div className={styles.buttons_container}>
-      {
-        buttons.map((buttonInfo, index) => <ButtonDefault
-              text={buttonInfo.text}
-              view={buttonInfo.view}
-              handler={buttonInfo.handler || (() => handler(buttonInfo.newStatus))}
-              key={index}
-            />
-        )
+      { buttons &&
+          buttons.map((buttonInfo, index) => <ButtonDefault
+                text={buttonInfo.text}
+                view={buttonInfo.view}
+                handler={buttonInfo.handler || (() => handler(buttonInfo.newStatus))}
+                key={index}
+              />
+          )
       }
     </div>
   </section>

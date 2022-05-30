@@ -1,9 +1,10 @@
 export const AppRoute = {
   START: '/',
-  TASKLIST: '/tasks',
   USERLIST: '/users',
-  TASK_ID: '/tasks/:id',
+  USER_ID: '/users/:id',
   PROFILE: '/users/me',
+  TASKLIST: '/tasks',
+  TASK_ID: '/tasks/:id',
   EDIT_TASK: '/tasks/edit/:id',
   NEW_TASK: '/tasks/new',
 };

@@ -2,19 +2,15 @@ import React, { useState } from "react";
 import styles from './pseudoSelect.module.scss';
 import SelectCheckbox from "../SelectCheckbox/selectCheckbox";
 
-/**
- * @typedef {*} OptionsType
- * {
- *   bug: true,
- *   task: false,
- * }
- */
-
 const PseudoSelect = ({ options, title, type, innerFilter, setInnerFilter }) => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  // const selected = 
+  /* const options = {
+       bug: 'Ошибка',
+       task: 'Задача',
+  }
+  */
   
   const names = Object.keys(options);
   const labels = Object.values(options);
@@ -40,6 +36,7 @@ const PseudoSelect = ({ options, title, type, innerFilter, setInnerFilter }) => 
                                                 type={names[index]}
                                                 innerFilter={innerFilter}
                                                 setInnerFilter={setInnerFilter}
+                                                isChecked={innerFilter[names[index]][index]}
                                               />)
             }
           </div>

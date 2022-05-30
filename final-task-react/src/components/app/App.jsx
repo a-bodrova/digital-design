@@ -4,7 +4,8 @@ import { observer } from "mobx-react-lite";
 
 import Error from "../error/Error";
 import TaskList from "../../pages/Tasklist/Tasklist";
-import Users from "../../pages/users/users";
+import UserList from "../../pages/userList/userList";
+import UserOverview from "../userOverview/UserOverview";
 import { AppRoute } from "../../constants";
 import Start from "../../pages/start/Start";
 import Layout from "../layout/layout";
@@ -25,7 +26,8 @@ const App = observer(() => {
             <Route path={ AppRoute.NEW_TASK } element={ <EditTask /> }></Route>
             <Route path={ AppRoute.TASK_ID } element={ <Task /> }></Route>
             <Route path={ AppRoute.EDIT_TASK } element={ <EditTask /> }></Route>
-            <Route path={ AppRoute.USERLIST } element={ <Users /> }></Route>
+            <Route path={ AppRoute.USERLIST } element={ <UserList /> }></Route>
+            <Route path={ AppRoute.USER_ID } element={ <UserOverview /> }></Route>
             <Route path={ AppRoute.PROFILE } element={ <MyProfile /> }></Route>
           </Route>
         </Route>

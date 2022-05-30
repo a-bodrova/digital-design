@@ -4,6 +4,7 @@ import { getUser, editUser, getAllUsers } from '../../api';
 class UserStore {
   user = '';
   allUsers = [];
+  page = 0;
 
   constructor() {
     makeAutoObservable(this, {}, {
