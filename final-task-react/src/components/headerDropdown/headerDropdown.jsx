@@ -7,6 +7,8 @@ import { action } from "mobx";
 import { observer } from "mobx-react-lite";
 
 const HeaderDropdown = observer(() => {
+  
+  const { user } = userStore;
 
   const handleExit = action(() => {
     userStore.user = '';
@@ -14,7 +16,7 @@ const HeaderDropdown = observer(() => {
 
   return (
     <ul className={ styles.drop_menu }>
-      <Link to={ AppRoute.PROFILE }>Посмотреть профиль</Link>
+      <Link to={`${AppRoute.USERLIST}/${user.id}`}>Посмотреть профиль</Link>
       <Link to={ AppRoute.START } className={ styles.danger__item } onClick={handleExit}>Выйти из системы</Link>
     </ul>
   );

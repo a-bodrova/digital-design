@@ -9,22 +9,46 @@ import { userStore } from '../../stores/usersStore/usersStore';
 import { AppRoute } from '../../constants';
 import PageTitle from '../pageTitle/pageTitle';
 import Divider from '../divider/divider';
+import Pagination from '../pagination/Pagination';
+import { tasks } from '../../stores/tasksStore/tasks';
+import UserTaskListItem from '../userTaskListItem/userTaskListItem';
+import Modal from '../modal/modal';
 
 const UserOverview = action(() => {
 
   const { id } = useParams();
+
   const { user, allUsers } = userStore;
   const userInfo = allUsers.filter(info => id === info.id).pop();
+
   const isAuthorizedUser = id === user.id;
+
   const [isModal, setIsModal] = useState(false);
   const navigate = useNavigate();
+
+  const [userTasks, setUserTasks] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
+  const [errMsg, setErrMsg] = useState(null);
+
+  useEffect(() => {
+
+    const getUserTasks = async () => {
+      await tasks.getTasks({...tasks.filter, assignedUsers: [userInfo.id]}, currentPage);
+      setUserTasks([...tasks.tenTasks]);
+    }
+    
+    try {
+
+      getUserTasks();
+
+    } catch (error) {
+      setErrMsg(error.message);
+    }
+
+  }, [userInfo.id, currentPage]);
 // TODO запрос на таски этого пользователя.
 //      В параметр к запросу filter положить assignedId: [userInfo.id]
-  useEffect(() => {
-    if (id === user.id) {
-      navigate(AppRoute.PROFILE);
-    }
-  }, [id, navigate, user.id]);
+
 
   const editUser = () => {
     setIsModal(!isModal);
@@ -63,9 +87,34 @@ const UserOverview = action(() => {
         <Divider />
         <section className={styles.taskslist}>
           <p className={styles.taskslist__title}>Задачи</p>
-          <ul className={styles.tasks}></ul>
+          <ul className={styles.tasks}>
+            {
+              userTasks
+              ?
+              userTasks.map(task => {
+                return <UserTaskListItem task={task} key={task.id} />
+              })
+              :
+              <div className={styles.err_msg}>{errMsg}</div>
+            }
+          </ul>
+          <Pagination
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              currentChunkLength={userTasks.length}
+              itemsTotal={tasks.total}
+              limit={10}
+          />
         </section>
       </section>
+      {
+        isModal &&
+          <Modal
+            user={user}
+            open={isModal}
+            onClose={() => setIsModal(false)}
+          />
+      }
     </main>
   )
 })

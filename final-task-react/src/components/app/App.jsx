@@ -10,7 +10,6 @@ import { AppRoute } from "../../constants";
 import Start from "../../pages/start/Start";
 import Layout from "../layout/layout";
 import RequireAuth from "../requireAuth/requireAuth";
-import MyProfile from '../../pages/myProfile/myProfile';
 import Task from '../../pages/task/task';
 import EditTask from '../../pages/editTask/editTask';
 
@@ -28,7 +27,6 @@ const App = observer(() => {
             <Route path={ AppRoute.EDIT_TASK } element={ <EditTask /> }></Route>
             <Route path={ AppRoute.USERLIST } element={ <UserList /> }></Route>
             <Route path={ AppRoute.USER_ID } element={ <UserOverview /> }></Route>
-            <Route path={ AppRoute.PROFILE } element={ <MyProfile /> }></Route>
           </Route>
         </Route>
           <Route path="*" element={ <Error /> }></Route>

@@ -48,7 +48,13 @@ const Pagination = ({ currentPage, setCurrentPage, currentChunkLength, itemsTota
       <span
         className={styles.viewed}
         >
-        {`Показано ${currentPage * limit + 1} - ${currentPage * limit + currentChunkLength} из ${itemsTotal}`}
+        {
+          itemsTotal > 0
+          ?
+          `Показано ${currentPage * limit + 1} - ${currentPage * limit + currentChunkLength} из ${itemsTotal}`
+          :
+          `Показано 0 из 0`
+        }
       </span>
     </div>
   )
