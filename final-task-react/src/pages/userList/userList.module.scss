@@ -12,6 +12,7 @@
 
 .page {
   display: flex;
+  flex-direction: column;
   padding: 20px;
   gap: 20px;
   flex-grow: 1;
@@ -20,50 +21,7 @@
   border-radius: 5px;
 }
 
-.user_info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: min(300px, 25%);
-}
-
-.avatar {
-  width: calc(182px);
-  height: calc(182px);
-  border-radius: 50%;
-
-  &__border {
-    @include avatar-border(186px);
-  }
-}
-
-.info {
-  flex-grow: 1;
-}
-
-.about__title {
-  @include common-text;
-  color: $color-label-text;
-}
-
-.about {
-  @include common-text;
-  color: $color-text;
-}
-
-.taskslist {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-
-  &__title {
-    @include common-text;
-    color: $color-label-text;
-    margin-bottom: 5px;
-  }
-}
-
-.tasks {
+.users {
   width: 100%;
   position: relative;
   display: flex;
@@ -71,7 +29,7 @@
   align-items: center;
   flex-grow: 1;
   border-radius: 5px;
-  overflow: hidden;
+  // overflow: hidden;
 
   &::before {
     position: absolute;
@@ -85,4 +43,8 @@
     z-index: 5;
     pointer-events: none;
   }
+}
+
+.error_message {
+  padding-top: 20px;
 }

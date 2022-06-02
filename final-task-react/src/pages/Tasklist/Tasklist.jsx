@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { action } from "mobx";
-import { observer } from 'mobx-react-lite';
+// import { observer } from 'mobx-react-lite';
 import { useNavigate } from "react-router";
 
 import styles from './taskList.module.scss';
@@ -12,7 +12,7 @@ import Pagination from "../../components/pagination/Pagination";
 import { tasks } from "../../stores/tasksStore/tasks";
 
 
-const TaskList = observer(() => {
+const TaskList = action(() => {
   
   
   const [filter, setFilter] = useState({...tasks.filter});

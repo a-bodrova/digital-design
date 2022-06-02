@@ -22,12 +22,12 @@ class TasksStore {
   }
 
   async getTasks(filter, page) {
-    const response = page !== undefined
+    const response = page === undefined
       ?
-      await getTasks(filter || this.filter, page, this.limit)
+      await getTasks(filter || this.filter, this.page, this.limit)
       :
-      await getTasks(filter || this.filter, this.page, this.limit);
-
+      await getTasks(filter || this.filter, page, this.limit);
+      
     this.tenTasks = [ ...response.data ];
     this.total = response.total;
   }

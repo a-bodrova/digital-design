@@ -1,0 +1,19 @@
+@import '../../styles/index.scss';
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  padding: 20px 30px;
+  @include common-text;
+  cursor: pointer;
+
+  &:nth-child(2n) {
+    background-color: $color-bg-item;
+  }
+
+  &:hover {
+    background-color: $color-label-text;
+  }
+}

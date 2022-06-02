@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { observer } from "mobx-react-lite";
+
 import styles from './myProfile.module.scss';
 import avatar from '../../assets/avatar-anonymous.jpg';
-import { observer } from "mobx-react-lite";
 import { userStore } from '../../stores/usersStore/usersStore';
 import PageTitle from "../../components/pageTitle/pageTitle";
 import UserTaskListItem from '../../components/userTaskListItem/userTaskListItem';
@@ -47,18 +48,25 @@ const MyProfile = observer(() => {
         <Divider />
         <section className={styles.taskslist}>
           <p className={styles.taskslist__title}>Задачи</p>
-          <div className={styles.tasks}>
+          <ul className={styles.tasks}>
             <UserTaskListItem task={{type: 'task', title: 'Test title 1', status: 'opened', rank: 'low'}} />
             <UserTaskListItem task={{type: 'task', title: 'Test title 3', status: 'inProgress', rank: 'medium'}} />
             <UserTaskListItem task={{type: 'task', title: 'Test title 4', status: 'complete', rank: 'high'}} />
             <UserTaskListItem task={{type: 'bug', title: 'Test title 2', status: 'testing', rank: 'high'}} />
             <UserTaskListItem task={{type: 'bug', title: 'Test title 5', status: 'testing', rank: 'low'}} />
             <UserTaskListItem task={{type: 'bug', title: 'Test title 6', status: 'complete', rank: 'medium'}} />
-          </div>
+          </ul>
         </section>
       </section>
     </main>
-    { isModal && <Modal user={ user } open={isModal} onClose={() => setIsModal(false)} />}
+    {
+      isModal &&
+        <Modal
+          user={user}
+          open={isModal}
+          onClose={() => setIsModal(false)}
+        />
+    }
     </>
   )
 })
