@@ -4,6 +4,7 @@ import ButtonDefault from "../buttons/buttonDefault/buttonDefault";
 import TaskStatus from '../taskStatus/taskStatus';
 
 const PageTitle = ({title, buttons, status, handler}) => {
+
   return (
   <section className={styles.pageTitle}>
     <div className={styles.title}>{title}

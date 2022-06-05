@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-// import { observer } from 'mobx-react-lite';
-import { action } from 'mobx';
+import { observer } from 'mobx-react-lite';
+// import { action } from 'mobx';
 
 import styles from './UserOverview.module.scss';
 import avatar from '../../assets/avatar-anonymous.jpg';
@@ -13,13 +13,15 @@ import Pagination from '../pagination/Pagination';
 import { tasks } from '../../stores/tasksStore/tasks';
 import UserTaskListItem from '../userTaskListItem/userTaskListItem';
 import Modal from '../modal/modal';
+import FormUserEdit from '../formUserEdit/formUserEdit';
 
-const UserOverview = action(() => {
+const UserOverview = observer(() => {
 
   const { id } = useParams();
 
   const { user, allUsers } = userStore;
-  const userInfo = allUsers.filter(info => id === info.id).pop();
+  const userData = allUsers.filter(info => id === info.id).pop();
+  const [userInfo, setUserInfo] = useState({...userData})
 
   const isAuthorizedUser = id === user.id;
 
@@ -45,7 +47,8 @@ const UserOverview = action(() => {
       setErrMsg(error.message);
     }
 
-  }, [userInfo.id, currentPage]);
+  }, [userInfo, currentPage]);
+
 // TODO запрос на таски этого пользователя.
 //      В параметр к запросу filter положить assignedId: [userInfo.id]
 
@@ -109,11 +112,13 @@ const UserOverview = action(() => {
       </section>
       {
         isModal &&
-          <Modal
-            user={user}
-            open={isModal}
-            onClose={() => setIsModal(false)}
-          />
+          <Modal>
+            <FormUserEdit
+                user={user}
+                onClose={() => setIsModal(false)}
+                handler={setUserInfo}
+            />
+          </Modal>
       }
     </main>
   )

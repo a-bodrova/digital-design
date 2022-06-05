@@ -1,9 +1,13 @@
+import { useState } from 'react';
+import moment from 'moment';
+import "moment/locale/ru";
+
 import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
 import styles from './viewInfo.module.scss';
 import { userStore } from '../../stores/usersStore/usersStore';
 import { typeText, rankText } from '../../constants';
-import moment from 'moment';
-import "moment/locale/ru";
+import Modal from '../modal/modal';
+import FormWorkTimeEdit from '../FormWorkTimeEdit/FormWorkTimeEdit';
 
 const ViewInfo = ({info}) => {
 
@@ -14,6 +18,12 @@ const ViewInfo = ({info}) => {
   const creationDate = moment(info.dateOfCreation).format('DD.MM.YYYY HH:MM');
   const updateDate = moment(info.dateOfUpdate).format('DD.MM.YYYY HH:MM');
   const duration = moment.duration(moment(info.dateOfUpdate).diff((moment(info.dateOfCreation))));
+
+  const [isOpenModal, setIsOpenModal] = useState(false);
+
+  const handleWorktime = () => {
+    setIsOpenModal(true);
+  }
 
   return (
     <div className={styles.wrapper}>
@@ -44,9 +54,14 @@ const ViewInfo = ({info}) => {
       <div className={styles.block}>
         <p className={styles.label}>Затрачено времени</p>
         <p className={styles.text}>{duration.humanize()}</p>
-        <ButtonDefault text='Сделать запись о работе' view='primary' />
+        <ButtonDefault text='Сделать запись о работе' view='primary' handler={handleWorktime} />
       </div>
-      
+      {
+        isOpenModal &&
+        <Modal>
+            <FormWorkTimeEdit onClose={() => setIsOpenModal(false)} taskId={info.id} />
+        </Modal>
+      }
     </div>
   )
 }

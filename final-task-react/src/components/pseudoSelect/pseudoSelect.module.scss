@@ -42,6 +42,7 @@
   }
 
 .checkboxes {
+  display: none;
   position: absolute;
   left: 0;
   right: 0;
@@ -54,6 +55,10 @@
   border-top: none;
   z-index: 10;
   overflow: scroll;
+
+  &.active {
+    display: block;
+  }
 
   &::-webkit-scrollbar {
     display: none;

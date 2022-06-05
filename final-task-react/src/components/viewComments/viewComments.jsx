@@ -53,7 +53,7 @@ const ViewComments = ({ taskId }) => {
       <div className={styles.block}>
         <label htmlFor='commentText' className={styles.label}>{`Комментарии (${comments.length})`}
           <textarea
-          ref={textareaRef}
+            ref={textareaRef}
             name="commentText"
             id="commentText"
             rows="4"

@@ -1,15 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
 import { observer } from "mobx-react-lite";
-import styles from './modal.module.scss';
-import FormUserEdit from "../formUserEdit/formUserEdit";
 
-const Modal = observer(({user, open, onClose}) => {
+import styles from './modal.module.scss';
+
+const Modal = observer(({ children }) => {
   return ReactDom.createPortal(
     <>
       <div className={styles.overlay}>
         <div className={styles.modal}>
-          <FormUserEdit user={user} onClose={onClose} />
+          { children }
         </div>
       </div>
     </>,

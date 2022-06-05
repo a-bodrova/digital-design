@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import ButtonDefault from "../buttons/buttonDefault/buttonDefault";
-import styles from './formUserEdit.module.scss';
 import { observer } from 'mobx-react-lite';
 import { action } from "mobx";
+
+import styles from './formUserEdit.module.scss';
 import { userStore } from "../../stores/usersStore/usersStore";
+import ButtonDefault from "../buttons/buttonDefault/buttonDefault";
 
-const FormUserEdit = observer(({ user, onClose }) => {
+const FormUserEdit = observer(({ user, onClose, handler }) => {
 
-  const [userInfo, setUser] = useState({
+  const [userData, setUserData] = useState({
     username: user.username,
     about: user.about,
     photoUrl: user.photoUrl,
@@ -15,18 +16,25 @@ const FormUserEdit = observer(({ user, onClose }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setUser({...userInfo, [name]: value});
+    setUserData({...userData, [name]: value});
   }
 
   const handleSubmit = action((e) => {
     e.preventDefault();
 
     userStore.editUser({
-      ...userInfo,
+      ...userData,
       id: user.id,
       login: user.login,
       password: user.password,
     });
+
+    handler({
+      ...userData,
+      id: user.id,
+      login: user.login,
+      password: user.password,
+    })
 
     onClose();
   })
@@ -40,7 +48,7 @@ const FormUserEdit = observer(({ user, onClose }) => {
           <input
             type="text"
             name="username"
-            defaultValue={userInfo.username}
+            defaultValue={userData.username}
             placeholder='Введите имя'
             onChange={handleChange}
           />
@@ -49,7 +57,7 @@ const FormUserEdit = observer(({ user, onClose }) => {
           <input
             type="text"
             name="photoUrl"
-            defaultValue={userInfo.photoUrl ? userInfo.photoUrl : undefined}
+            defaultValue={userData.photoUrl ? userData.photoUrl : undefined}
             placeholder='Введите URL'
             onChange={handleChange}
           />
@@ -57,7 +65,7 @@ const FormUserEdit = observer(({ user, onClose }) => {
         <label htmlFor="about">О себе
           <textarea
             name="about"
-            value={user.about ? userInfo.about : undefined}
+            value={user.about ? userData.about : undefined}
             placeholder='Введите текст'
             rows={4}
             onChange={handleChange}

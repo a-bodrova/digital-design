@@ -1,6 +1,7 @@
 import React, { useState }   from 'react';
 import { useParams } from 'react-router';
 import { useNavigate } from 'react-router';
+import { observer } from 'mobx-react-lite';
 
 import styles from './task.module.scss';
 import PageTitle from '../../components/pageTitle/pageTitle';
@@ -12,7 +13,7 @@ import ViewComments from '../../components/viewComments/viewComments';
 import { statusButtonList } from '../../constants';
 import { changeStatus, getTask } from '../../api';
 
-const Task = () => {
+const Task = observer(() => {
 
   const { id } = useParams();
   const task = [...tasks.tenTasks].filter(task => task.id === id).pop();
@@ -69,6 +70,6 @@ const Task = () => {
       </main>
     </>
   )
-}
+})
 
 export default Task;

@@ -125,3 +125,8 @@ export const changeStatus = async (taskId, newStatus) => {
   const response = await axios.patch(`${endpoint.GETTASKS}/${taskId}${endpoint.EDITSTATUS}${newStatus}`);
   return response.data;
 }
+
+export const editWorktime = async (taskId, body) => {
+  const response = await axios.patch(`${endpoint.GETTASKS}/${taskId}/worktime`, JSON.stringify(body), headers);
+  return response.data;
+}

@@ -7,11 +7,6 @@ import { typeText, statusText, rankText } from "../../constants";
 import ButtonDefault from '../buttons/buttonDefault/buttonDefault';
 import { tasks } from "../../stores/tasksStore/tasks";
 
-/**
- * @params filter: {
- * }
- * 
- */
 
 const Filter = observer(({filter, setFilter}) => {
 

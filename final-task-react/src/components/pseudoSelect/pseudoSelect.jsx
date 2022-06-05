@@ -6,14 +6,8 @@ const PseudoSelect = ({ options, title, type, innerFilter, setInnerFilter }) => 
 
   const [isOpen, setIsOpen] = useState(false);
 
-  /* const options = {
-       bug: 'Ошибка',
-       task: 'Задача',
-  }
-  */
-  
-  const names = Object.keys(options);
-  const labels = Object.values(options);
+  const keys = Object.keys(options);
+  const values = Object.values(options);
 
   const showCheckboxes = (e) => {
     setIsOpen(!isOpen);
@@ -24,23 +18,19 @@ const PseudoSelect = ({ options, title, type, innerFilter, setInnerFilter }) => 
       <div className={`${styles.selectBox} ${isOpen && styles.active} ${styles[type]}`} onClick={showCheckboxes}>
         {title}
       </div>
-        {
-          isOpen &&
-          <div className={styles.checkboxes}>
+      <div className={`${styles.checkboxes} ${isOpen && styles.active}`}>
 
             {
-              labels.map((label, index) => <SelectCheckbox
+              values.map((value, index) => <SelectCheckbox
                                                 id={index}
-                                                labelText={label}
+                                                labelText={value}
                                                 key={index}
-                                                type={names[index]}
+                                                type={keys[index]}
                                                 innerFilter={innerFilter}
                                                 setInnerFilter={setInnerFilter}
-                                                isChecked={innerFilter[names[index]][index]}
                                               />)
             }
           </div>
-        }
     </div>
   );
 }
