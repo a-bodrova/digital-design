@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="view" :type="type">{{ text }}</button>
+  <button class="btn" :class="view" :type="type" @click="handler">{{ text }}</button>
 </template>
 
 <script>
@@ -8,21 +8,90 @@ export default {
     'view': String,
     'text': String,
     'type': String,
+    'handler': Function,
   },
-
-  data() {
-    return {
-    }
-  },
-  methods: {
-    toTasks() {
-      this.$router.push({ name: 'TaskList' });
-    }
-  }
-
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
 
+.btn {
+  padding: 2.5px 20px;
+  @include common-text;
+  background-color: $color-default-btn;
+  color: $color-dark;
+  border: 1px solid $color-text;
+  border-radius: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $color-default-btn-hover;
+  }
+
+  &:active {
+    background-color: $color-default-btn-active;
+  }
+}
+
+.primary {
+  background-color: $color-primary;
+  color: $color-light;
+  border: 1px solid $color-primary;
+
+  &:hover {
+    background-color: $color-primary-hover;
+  }
+
+  &:active {
+    background-color: $color-primary-active;
+  }
+}
+
+.error {
+  background-color: $color-error;
+  color: $color-light;
+  border: 1px solid $color-error;
+
+  &:hover {
+    background-color: $color-error-hover;
+  }
+
+  &:active {
+    background-color: $color-error-active;
+  }
+}
+
+.disabled {
+  background-color: $color-disabled;
+  color: $color-label-text;
+  border: 1px solid $color-disabled;
+  cursor: auto;
+
+  &:hover {
+    background-color: $color-disabled;
+  }
+
+  &:active {
+    background-color: $color-disabled;
+  }
+}
+
+.success {
+  background-color: $color-success;
+  color: $color-light;
+  border: 1px solid $color-success;
+
+  &:hover {
+    background-color: $color-success-hover;
+  }
+
+  &:active {
+    background-color: $color-success-active;
+  }
+}
+
+.digit {
+  padding: 2.5px 7.5px;
+}
 </style>

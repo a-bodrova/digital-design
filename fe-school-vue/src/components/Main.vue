@@ -1,7 +1,16 @@
 <template>
   <main class="main">
-    <slot name="page-title"></slot>
+    <div class="page-title__wrapper">
+      <h1 class="page-title">{{ pageTitle }}</h1>
+      <div class="buttons__container">
+        <slot name="page-title__buttons"></slot>
+      </div>
+    </div>
     <section class="page">
+      <slot name="filter"></slot>
+      <ul>
+        <slot name="list"></slot>
+      </ul>
     </section>
   </main>
 </template>
@@ -9,13 +18,12 @@
 <script>
 
 export default {
- 
+  props: {
+    'pageTitle': String,
+  },
 
   data() {
     return {
-      props: [
-        'title',
-      ],
     }
   },
 }
@@ -25,6 +33,18 @@ export default {
 <style lang="scss" scoped>
   .page-title {
     @include page-title;
+
+    &__wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+
+  .buttons__container {
+    display: flex;
+    gap: 10px;
   }
 
   .main {

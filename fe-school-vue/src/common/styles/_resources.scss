@@ -33,24 +33,25 @@ $preview-bg: rgba(63, 106, 134, 0.6);
 $border-radius: 8px;
 
 @mixin right {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 .fade-enter-active, .fade-leave-active {
-    transition: opacity 160ms;
+  transition: opacity 160ms;
 }
+
 .fade-enter, .fade-leave-to x{
-    opacity: 0;
+  opacity: 0;
 }
 
 @keyframes spin {
-    0% { transform: rotateZ(-360deg) }
+  0% { transform: rotateZ(-360deg) }
 }
 
 .spin {
-    animation: spin 640ms linear infinite;
+  animation: spin 640ms linear infinite;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
 }
