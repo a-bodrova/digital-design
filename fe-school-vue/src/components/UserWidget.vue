@@ -1,12 +1,14 @@
 <template>
   <div class="user">
-    <span class="user__name">{{ username }}</span>
-    <div class="avatar__border" @click="handleAvatar">
-      <img :src="imageSrc" class="avatar" alt="avatar" />
+    <span class="user__name">{{ user.username }}</span>
+    <div class="avatar__border" @click="handleClick">
+      <img :src="user.photoUrl" class="avatar" alt="avatar" />
     </div>
     <Dropdown v-if="isOpenDropdown">
-      <li><a href="/" @click="handleProfile">Посмотреть профиль</a></li>
-      <li><a href="/" @click="handleExit" class="danger__item">Выйти из системы</a></li>
+      <template v-slot:dropdown>
+        <li @click="handleClick"><router-link :to="`/users/${user.id}`">Посмотреть профиль</router-link></li>
+        <li @click="handleClick"><router-link to="/auth" @click="handleExit" class="danger__item">Выйти из системы</router-link></li>
+      </template>
     </Dropdown>
   </div>
 </template>
@@ -20,23 +22,20 @@ export default {
   },
   data() {
     return {
-      username: 'Anna',
       isOpenDropdown: false,
+      user: {
+        id: 1,
+        username: 'Anna',
+        photoUrl: 'static/images/avatar.jpg',
+      },
     }
   },
 
   methods: {
-    handleAvatar() {
+    handleClick() {
       this.isOpenDropdown = !this.isOpenDropdown;
     },
-    handleProfile() {},
     handleExit() {},
-  },
-
-  computed: {
-    imageSrc() {
-      return 'static/images/avatar.jpg';
-    },
   },
 }
 </script>

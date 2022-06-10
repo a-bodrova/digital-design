@@ -1,28 +1,33 @@
 <template>
   <div class="app">
-    <Header></Header>
-    <!-- <header class="header">
-      <div>
-        <svg width="120" height="20">
-          <use :xlink:href="logoLink"/>
-        </svg>
-      </div>
-      <nav class="nav">
-        <router-link :to="pathToTasks" class="nav__link" active-class="active">Задачи</router-link>
-        <router-link :to="pathToUsers" class="nav__link" active-class="active">Пользователи</router-link>
-    </nav>
-      <UserWidget></UserWidget>
-    </header> -->
-    <router-view></router-view>
+    <Header>
+      <template v-if="isUser" v-slot:header> 
+        <NavList></NavList>
+        <UserWidget></UserWidget>
+      </template>
+    </Header>
+    <router-view name="main"></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue';
+import Header from '@/components/Header.vue';
+import NavList from '@/components/NavList.vue';
+import UserWidget from '@/components/UserWidget.vue';
+import Main from '@/components/Main.vue';
 
 export default {
   components: {
     Header,
+    Main,
+    UserWidget,
+    NavList,
+  },
+
+  data() {
+    return {
+      isUser: true,
+    };
   },
 
   mounted() {
@@ -35,4 +40,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  background-color: $color-bg;
+}
 </style>

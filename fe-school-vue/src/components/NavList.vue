@@ -1,42 +1,12 @@
 <template>
-  <div>
-    <nav class="nav">
-      <!-- <slot></slot> -->
-        <router-link :to="{ name: 'TaskList' }" class="nav__link" active-class="active"><span>Задачи</span></router-link>
-        <router-link :to="{ name: 'UserList' }" class="nav__link" active-class="active"><span>Пользователи</span></router-link>
-    </nav>
-  </div>
+  <nav class="nav">
+    <router-link to="/tasks" class="nav__link" active-class="active">Задачи</router-link>
+    <router-link to="/users" class="nav__link" active-class="active">Пользователи</router-link>
+  </nav>
 </template>
 
 <script>
-  import router from '../router/index.js';
-  import TaskList from '../pages/TaskList.vue';
-  import UserList from '../pages/UserList.vue';
-
 export default {
-  components: {
-    TaskList,
-    UserList,
-  },
-  data() {
-    return {
-      pathToTasks: {
-        path: '/tasks',
-        name: 'TaskList',
-        // params: {
-        //   page: 'TaskList',
-        // },
-      },
-      pathToUsers: {
-        path: '/users',
-        name: 'UserList',
-        // params: {
-        //   page: 'UserLIst',
-        // },
-      },
-      // toTasks: router.routes[0].path,
-    }
-  }
 }
 </script>
 

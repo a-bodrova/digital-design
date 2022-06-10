@@ -1,6 +1,5 @@
 import VueRouter from "vue-router";
 
-import Main from '../pages/Main.vue';
 import Auth from '../pages/Auth.vue';
 import UserList from '../pages/UserList.vue';
 import TaskList from '../pages/TaskList.vue';
@@ -8,105 +7,75 @@ import NotFound from '../pages/NotFound.vue';
 import TaskOverview from '../pages/TaskOverview.vue';
 import UserOverview from '../pages/UserOverview.vue';
 
-
-// const routes = [
-//   {
-//     path: '/',
-//     name: 'Main',
-//     component: Main,
-//     children: [
-//       {
-//         path: '/auth',
-//         name: 'Auth',
-//         component: Auth,
-//       },
-//       {
-//         path: '/users',
-//         name: 'UserList',
-//         component: UserList,
-//         children: [
-//           {
-//             path: ':userId',
-//             name: 'UserOverview',
-//             component: UserOverview,
-//             children: [
-//               {
-//                 path: '/edit',
-//                 name: 'UserEdit',
-//                 component: UserOverview,
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//       {
-//         path: '/tasks',
-//         name: 'TaskList',
-//         component: TaskList,
-//         children: [
-//           {
-//             path: ':taskId',
-//             name: 'TaskOverview',
-//             component: TaskOverview,
-//             children: [
-//               {
-//                 path: '/edit',
-//                 name: 'TaskEdit',
-//                 component: TaskOverview,
-//               },
-//             ],
-//           },
-//         ],
-//       },
-//     ],
-//   },
-//   {
-//     path: '*',
-//     redirect: {
-//       name: 'NotFound',
-//       component: NotFound,
-//     },
-//   },
-// ];
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'Main',
-    component: Main,
+    path: '/auth',
+    components: {
+      default: Auth,
+    },
   },
   {
     path: '/tasks',
-    name: 'TaskList',
-    component: TaskList,
-  },
-  {
-    path: '/users',
-    name: 'UserList',
-    component: UserList,
+    props: true,
+    components: {
+      main: TaskList,
+    },
+    // children: [
+    //   {
+    //     path: '/',
+    //     props: true,
+    //     components: {
+    //       main: Main,
+    //     },
+    //   },
+    // ],
   },
   {
     path: '/tasks/:taskId',
-    name: 'TaskOverview',
-    component: TaskOverview,
+    props: true,
+    components: {
+      main: TaskOverview,
+    },
+  },
+  {
+    path: '/tasks/:taskId/edit',
+    props: true,
+    components: {
+      main: TaskOverview,
+    },
+  },
+  {
+    path: '/users',
+    props: true,
+    components: {
+      main: UserList,
+    },
   },
   {
     path: '/users/:userId',
-    name: 'UserOverview',
-    component: UserOverview,
+    props: true,
+    components: {
+      main: UserOverview,
+    },
   },
   {
     path: '*',
     name: 'NotFound',
-    component: NotFound,
+    components: {
+      main: NotFound,
+    },
   },
+  {
+    path: '/',
+    redirect: '/tasks',
+  }
 ];
 
-const router = () => {
-  return new VueRouter({
+const router = new VueRouter({
     routes,
-    mode: 'abstract',
+    mode: 'hash',
   });
-}
 
 export default router;

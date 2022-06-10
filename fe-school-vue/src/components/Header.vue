@@ -1,49 +1,25 @@
 <template>
   <header class="header">
-      <div>
-        <svg width="120" height="20">
-          <use :xlink:href="logoLink"/>
-        </svg>
-      </div>
-      <button @click="toTasks">To tasks</button>
-      <NavList>
-        <!-- <router-link :to="pathToTasks" class="nav__link" active-class="active">Задачи</router-link>
-        <router-link :to="pathToUsers" class="nav__link" active-class="active">Пользователи</router-link> -->
-      </NavList>
-      <UserWidget></UserWidget>
-    </header>
+    <Logotype></Logotype>
+    <slot name="header"></slot>
+  </header>
 </template>
 
 <script>
-import NavList from '@/components/NavList.vue';
-import UserWidget from '@/components/UserWidget.vue';
-import Button from '@/components/Button.vue';
+import Logotype from '@/components/Logotype.vue';
 
 export default {
   components: {
-    NavList,
-    UserWidget,
-    Button,
+    Logotype,
   },
   data() {
     return {
-      // pathToTasks: {
-      //   name: 'TaskList',
-      //   params: {
-      //     page: 'TaskList',
-      //   },
-      // },
-      // pathToUsers: {
-      //   name: 'UserList',
-      //   params: {
-      //     page: 'UserLIst',
-      //   },
-      // },
+
     }
   },
   computed: {
-    logoLink() {
-      return 'static/images/Logo.svg';
+    src() {
+      return `#logo-task`;
     }
   },
 

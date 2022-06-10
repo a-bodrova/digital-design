@@ -1,18 +1,32 @@
 <template>
-<!-- <Header></Header> -->
   <main class="main">
+    <slot name="page-title"></slot>
     <section class="page">
     </section>
   </main>
 </template>
 
 <script>
-export default {
 
+export default {
+ 
+
+  data() {
+    return {
+      props: [
+        'title',
+      ],
+    }
+  },
 }
 </script>
 
-<style lang="scss">
+
+<style lang="scss" scoped>
+  .page-title {
+    @include page-title;
+  }
+
   .main {
     max-width: 1280px;
     width: 100%;

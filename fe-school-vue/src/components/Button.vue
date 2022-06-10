@@ -1,9 +1,14 @@
 <template>
-  <button @click="toTasks">To tasks</button>
+  <button class="btn" :class="view" :type="type">{{ text }}</button>
 </template>
 
 <script>
 export default {
+  props: {
+    'view': String,
+    'text': String,
+    'type': String,
+  },
 
   data() {
     return {

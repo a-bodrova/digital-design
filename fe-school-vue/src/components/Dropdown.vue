@@ -1,6 +1,6 @@
 <template>
   <ul class="drop__menu">
-    <slot></slot>
+    <slot name="dropdown"></slot>
   </ul>
 </template>
 
