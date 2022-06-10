@@ -1,0 +1,50 @@
+<template>
+  <ul class="drop__menu">
+    <slot></slot>
+  </ul>
+</template>
+
+<script>
+</script>
+
+<style lang="scss" scoped>
+
+  .drop__menu {
+    position: absolute;
+    top: 42px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: $color-light;
+    box-shadow: 0px 0px 2px 2px rgba(123, 97, 255, 0.5);
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+    z-index: 50;
+    
+    & > * {
+      width: 100%;
+      white-space: nowrap;
+      padding: 2.5px 5px; 
+      @include dropdown-text;
+      color: $color-text;
+  
+      &:hover {
+        background-color: $color-hover;
+      }
+      
+      &:first-child {
+        padding: 5px 5px 2.5px 5px;
+      }
+  
+      &:last-child {
+        padding: 2.5px 5px 5px 5px;
+      }
+    }
+  
+    .danger__item {
+      color:  $color-error;
+    }
+  }
+</style>

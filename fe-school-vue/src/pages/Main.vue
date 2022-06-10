@@ -1,7 +1,7 @@
 <template>
+<!-- <Header></Header> -->
   <main class="main">
     <section class="page">
-      <router-view/>
     </section>
   </main>
 </template>

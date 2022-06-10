@@ -1,48 +1,38 @@
 <template>
   <div class="app">
     <Header></Header>
-    <Main></Main>
+    <!-- <header class="header">
+      <div>
+        <svg width="120" height="20">
+          <use :xlink:href="logoLink"/>
+        </svg>
+      </div>
+      <nav class="nav">
+        <router-link :to="pathToTasks" class="nav__link" active-class="active">Задачи</router-link>
+        <router-link :to="pathToUsers" class="nav__link" active-class="active">Пользователи</router-link>
+    </nav>
+      <UserWidget></UserWidget>
+    </header> -->
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import Header from './components/Header.vue'
-import Main from './pages/Main.vue'
+import Header from './components/Header.vue';
+
 export default {
-  components: { Main, Header },
-  data() {
-    return {
-      
-    }
+  components: {
+    Header,
   },
 
-  computed: {
-
-  },
   mounted() {
     // this.$api.Events.getEvents()
     // .then((data) => {
     //   console.log(data);
     // })
   },
-  methods: {
-
-  },
 }
 </script>
 
 <style lang="scss" scoped>
-  .btn {
-    @include common-text;
-    padding: 2.5px 7.5px;
-  }
-
-  .counter {
-    @include common-text;
-    color: $color-text;
-  }
-
-  .app2 {
-    background: green;
-  }
 </style>
