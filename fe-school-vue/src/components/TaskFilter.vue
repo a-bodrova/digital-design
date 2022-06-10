@@ -1,12 +1,16 @@
 <template>
   <section class="filter__wrapper">
-    TaskFilter
+    <MyCheckbox />
   </section>
 </template>
 
 <script>
-export default {
+import MyCheckbox from '@/components/MyCheckbox.vue';
 
+export default {
+  components: {
+    MyCheckbox,
+  }
 }
 </script>
 
