@@ -1,5 +1,5 @@
 <template>
-  <li>
+  <li class="task-list__item">
     
   </li>
 </template>

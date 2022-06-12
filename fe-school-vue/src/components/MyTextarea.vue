@@ -1,10 +1,17 @@
 <template>
-  <textarea rows="4" class="my-textarea"></textarea>
+  <textarea rows="4" class="my-textarea" :placeholder="placeholder" v-model="textareaValue"></textarea>
 </template>
 
 <script>
 export default {
-
+  props: {
+    'placeholder': String,
+  },
+  data() {
+    return {
+      textareaValue: '',
+    }
+  }
 }
 </script>
 
@@ -12,13 +19,13 @@ export default {
 .my-textarea {
   width: 100%;
   padding: 5px 10px;
-  margin-top: 5px;
-  @include dropdown-text;
+  @include common-text($size: 14px, $height: 14px);
   font-size: 14px;
   line-height: 17px;
   color: $color-text;
   box-shadow: inset 0px 0px 2px 1px $color-disabled;
   border-radius: 3px;
+  border: none;
   resize: none;
 
   &:hover {

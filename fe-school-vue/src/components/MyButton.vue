@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="view" :type="type" @click="handler">{{ text }}</button>
+  <button class="btn" :class="view" :type="type" @click.prevent="handler">{{ text }}</button>
 </template>
 
 <script>
@@ -91,7 +91,7 @@ export default {
   }
 }
 
-.digit {
+.btn.digit {
   padding: 2.5px 7.5px;
 }
 </style>

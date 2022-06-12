@@ -1,32 +1,34 @@
 <template>
   <Main pageTitle="Задачи">
     <template v-slot:page-title__buttons>
-      <Button
+      <my-button
         type="button"
         text="Добавить задачу"
         view="primary"
         :handler="handleAddTask"
       >
-      </Button>
+      </my-button>
     </template>
     <template v-slot:filter>
-      <TaskFilter />
+      <task-filter />
     </template>
-    <template v-slot:list></template>
+    <template v-slot:list>
+      <task-item></task-item>
+    </template>
     
   </Main>
 </template>
 
 <script>
 import Main from '@/components/Main.vue';
-import Button from '@/components/Button.vue';
+import MyButton from '@/components/MyButton.vue';
 import TaskFilter from '@/components/TaskFilter.vue';
 import TaskItem from '@/components/TaskItem.vue';
 
 export default {
   components: {
     Main,
-    Button,
+    MyButton,
     TaskFilter,
     TaskItem,
   },

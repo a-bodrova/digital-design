@@ -1,10 +1,52 @@
 <template>
-  <input type="checkbox" class="my-checkbox" />
+  <input
+    :id="`my-${name}`"
+    type="checkbox"
+    class="my-checkbox"
+    :checked="isChecked"
+    @change="changeInput"
+  />
 </template>
 
 <script>
 export default {
+  model: {
+    prop: 'checkedValues',
+    event: 'change',
+  },
 
+  props: {
+    'checkedValues': Array,
+    'name': String,
+  },
+
+  data() {
+    return {
+      isChecked: '',
+    }
+  },
+
+  // mounted() {
+  //   this.isChecked = this.checkedValues[this.name] || false;
+  // },
+
+  methods: {
+    changeInput() {
+      this.isChecked = !this.isChecked;
+      if (this.isChecked) {
+        if (!this.checkedValues.includes(this.name)) {
+          this.$emit('change', [...this.checkedValues, this.name]);
+        }
+      } else {
+        if (this.checkedValues.includes(this.name)) {
+          this.$emit('change', [...this.checkedValues.filter(item => item !== this.name)]);
+        }
+      }
+      
+      
+      // console.log(Object.assign(this.checkedValue, {[this.name]: this.isChecked}));
+    }
+  },
 }
 </script>
 
