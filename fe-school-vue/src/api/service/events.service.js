@@ -1,10 +1,15 @@
 export default api => {
-	api.Events = {
-		getEvents() {
-            return api.instance.request({
-                method: 'get',
-                url: `events`,
-            })
+  api.tasks = {
+    getTasks(filter, page, limit) {
+      return api.instance.request({
+        method: 'post',
+        url: 'tasks',
+        data: {
+          filter,
+          page,
+          limit,
         },
-	}
+      });
+    },
+  }
 }

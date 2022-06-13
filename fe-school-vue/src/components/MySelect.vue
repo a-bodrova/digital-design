@@ -61,23 +61,28 @@ export default {
 
 <style lang="scss" scoped>
   .my-select {
+    position: relative;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
 
     &__wrapper {
+      position: absolute;
+      top: -5px;
+      left: -5px;
       width: calc(100% + 10px);
       display: flex;
       flex-direction: column;
       align-items: center;
       padding-top: 31px;
-      margin-top: -31px;
+      background-color: $color-light;
       border: 1px solid $color-primary;
       border-radius: 5px;
-      z-index: -10;
+      display: none;
 
       &.open {
-        z-index: 1;
+        display: flex;
         @extend %box-shadow;
       }
     }

@@ -1,76 +1,79 @@
 import VueRouter from "vue-router";
 
+import { appRoutes } from "../common/constants";
 import Auth from '../pages/Auth.vue';
 import UserList from '../pages/UserList.vue';
 import TaskList from '../pages/TaskList.vue';
 import NotFound from '../pages/NotFound.vue';
 import TaskOverview from '../pages/TaskOverview.vue';
 import UserOverview from '../pages/UserOverview.vue';
+import TaskEdit from '@/pages/TaskEdit.vue';
+import UserEdit from '@/pages/UserEdit.vue';
 
 Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/auth',
+    path: appRoutes.AUTH,
     components: {
       default: Auth,
     },
   },
   {
-    path: '/tasks',
+    path: appRoutes.TASKS_LIST,
     props: true,
     components: {
       main: TaskList,
     },
-    // children: [
-    //   {
-    //     path: '/',
-    //     props: true,
-    //     components: {
-    //       main: Main,
-    //     },
-    //   },
-    // ],
   },
   {
-    path: '/tasks/:taskId',
+    path: appRoutes.TASK_OVERVIEW,
     props: true,
     components: {
       main: TaskOverview,
     },
   },
   {
-    path: '/tasks/:taskId/edit',
+    path: appRoutes.TASK_EDIT,
     props: true,
     components: {
-      main: TaskOverview,
+      main: TaskEdit,
     },
   },
   {
-    path: '/users',
+    path: appRoutes.NEW_TASK,
+    props: true,
+    components: {
+      main: TaskEdit,
+    }
+  },
+  {
+    path: appRoutes.USERS_LIST,
     props: true,
     components: {
       main: UserList,
     },
   },
   {
-    path: '/users/:userId',
+    path: appRoutes.USER_OVERVIEW,
     props: true,
     components: {
       main: UserOverview,
     },
   },
   {
-    path: '*',
-    name: 'NotFound',
+    path: appRoutes.USER_EDIT,
+    props: true,
+    components: {
+      main: UserEdit,
+    }
+  },
+  {
+    path: appRoutes.NOT_FOUND,
     components: {
       main: NotFound,
     },
   },
-  {
-    path: '/',
-    redirect: '/tasks',
-  }
 ];
 
 const router = new VueRouter({

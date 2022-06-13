@@ -8,7 +8,7 @@
     </div>
     <section class="page">
       <slot name="filter"></slot>
-      <ul class="task-list">
+      <ul class="list">
         <slot name="list"></slot>
       </ul>
     </section>
@@ -68,8 +68,26 @@ export default {
     border-radius: 5px;
   }
 
-  .task-list {
-    flex-grow: 2;
-    height: 100%;
+  .list {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1;
+    border-radius: 5px;
+  
+    &::before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      content: '';
+      width: 100%;
+      height: 100%;
+      box-shadow: inset 0px 0px 2px 1px $color-disabled;
+      border-radius: 5px;
+      z-index: 5;
+      pointer-events: none;
+    }
   }
 </style>

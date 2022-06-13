@@ -1,20 +1,12 @@
 import Vuex from "vuex";
 
+import storeTasks from './storeTasks';
+
 Vue.use(Vuex);
 
 const store = new Vuex.Store({
-  state: {
-    currentUser: '',
-    allUsers: [],
-  },
-  mutations: {
-
-  },
-  actions: {
-
-  },
   modules: {
-
+    storeTasks,
   },
 });
 

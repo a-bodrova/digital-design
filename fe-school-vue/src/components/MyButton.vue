@@ -17,10 +17,10 @@ export default {
 
 .btn {
   padding: 2.5px 20px;
-  @include common-text;
+  @include common-text($size: 16px, $height: 19px);
   background-color: $color-default-btn;
   color: $color-dark;
-  border: 1px solid $color-text;
+  border: none;
   border-radius: 5px;
   white-space: nowrap;
   cursor: pointer;
@@ -37,7 +37,6 @@ export default {
 .primary {
   background-color: $color-primary;
   color: $color-light;
-  border: 1px solid $color-primary;
 
   &:hover {
     background-color: $color-primary-hover;
@@ -51,7 +50,6 @@ export default {
 .error {
   background-color: $color-error;
   color: $color-light;
-  border: 1px solid $color-error;
 
   &:hover {
     background-color: $color-error-hover;
@@ -65,7 +63,6 @@ export default {
 .disabled {
   background-color: $color-disabled;
   color: $color-label-text;
-  border: 1px solid $color-disabled;
   cursor: auto;
 
   &:hover {
@@ -80,7 +77,6 @@ export default {
 .success {
   background-color: $color-success;
   color: $color-light;
-  border: 1px solid $color-success;
 
   &:hover {
     background-color: $color-success-hover;

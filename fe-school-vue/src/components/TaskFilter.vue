@@ -1,9 +1,9 @@
 <template>
   <form class="filter__wrapper">
-    <my-select :options="Object.entries(typeSelect)" placeholder="Тип" v-model="filter.type" />
-    <my-input placeholder="Название задачи" v-model="filter.query" />
-    <my-select :options="Object.entries(statusSelect)" placeholder="Статус" v-model="filter.status" />
-    <my-select :options="Object.entries(rankSelect)" placeholder="Приоритет" v-model="filter.rank" />
+    <my-select :options="Object.entries(type)" placeholder="Тип" v-model="filterType" />
+    <my-input placeholder="Название задачи" v-model="filterQuery" />
+    <my-select :options="Object.entries(status)" placeholder="Статус" v-model="filterStatus" />
+    <my-select :options="Object.entries(rank)" placeholder="Приоритет" v-model="filterRank" />
     <my-button
       type="submit"
       text="Применить"
@@ -18,6 +18,8 @@
 import MyInput from '@/components/MyInput.vue';
 import MySelect from '@/components/MySelect.vue';
 import MyButton from '@/components/MyButton.vue';
+import { mapGetters, mapActions } from 'vuex';
+import { typeSelect, statusSelect, rankSelect } from '@/common/constants';
 
 export default {
   components: {
@@ -28,35 +30,54 @@ export default {
 
   data() {
     return {
-      filter: {
-        query: '',
-        assignedUsers: [],
-        userIds: [],
-        type: [],
-        status: [],
-        rank: [],
-      },
-      searchText: '',
-      typeSelect: {
-        bug: 'Ошибка',
-        task: 'Задача',
-      },
-      statusSelect: {
-        opened: 'Открыто',
-        inProgress: 'В работе',
-        testing: 'Тестирование',
-        complete: 'Сделано',
-      },
-      rankSelect: {
-        low: 'Низкий',
-        medium: 'Средний',
-        high: 'Высокий',
-      },
+      type: typeSelect,
+      status: statusSelect,
+      rank: rankSelect,
     }
   },
+
+  computed: {
+    ...mapGetters('storeTasks', ['filter']),
+
+    filterType: {
+      get() {
+        return this.filter.type;
+      },
+      set(value) {
+        this.setFilter({ ...this.filter, type: value });
+      },
+    },
+    filterQuery: {
+      get() {
+        return this.filter.query;
+      },
+      set(value) {
+        this.setFilter({ ...this.filter, query: value });
+      },
+    },
+    filterStatus: {
+      get() {
+        return this.filter.status;
+      },
+      set(value) {
+        this.setFilter({ ...this.filter, status: value });
+      },
+    },
+    filterRank: {
+      get() {
+        return this.filter.rank;
+      },
+      set(value) {
+        this.setFilter({ ...this.filter, rank: value });
+      },
+    },
+  },
+
   methods: {
+    ...mapActions('storeTasks', ['setFilter']),
+
     handleSubmit() {
-      console.log('submit', this.filter);
+      this.$emit('change', this.filter);
     }
   }
 }
