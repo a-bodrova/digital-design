@@ -1,0 +1,1208 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"CommentDTO": {
+				"description": "Модель комментария",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "id комментария"
+					},
+					"taskId": {
+						"type": "string",
+						"description": "id задачи"
+					},
+					"userId": {
+						"type": "string",
+						"description": "id пользователя"
+					},
+					"text": {
+						"type": "string",
+						"description": "Текст комментария"
+					},
+					"dateOfCreation": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Дата создания"
+					},
+					"dateOfUpdate": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Дата обновления"
+					}
+				},
+				"required": [
+					"taskId",
+					"userId",
+					"text"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskTypeEnum": {
+				"description": "Тип задачи",
+				"enum": [
+					"task",
+					"bug"
+				],
+				"type": "string"
+			},
+			"TaskStatusEnum": {
+				"description": "Статус",
+				"enum": [
+					"opened",
+					"inProgress",
+					"testing",
+					"complete"
+				],
+				"type": "string"
+			},
+			"TaskRankEnum": {
+				"description": "Приоритет",
+				"enum": [
+					"low",
+					"medium",
+					"high"
+				],
+				"type": "string"
+			},
+			"TaskDTO": {
+				"description": "Модель задачи",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "id задачи"
+					},
+					"userId": {
+						"type": "string",
+						"description": "id пользователя"
+					},
+					"assignedId": {
+						"type": "string",
+						"description": "id пользователя на которого назначена задача"
+					},
+					"title": {
+						"type": "string",
+						"description": "Заголовок"
+					},
+					"description": {
+						"type": "string",
+						"description": "Описание"
+					},
+					"type": {
+						"$ref": "#/components/schemas/TaskTypeEnum",
+						"description": "Тип задачи"
+					},
+					"dateOfCreation": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Дата создания"
+					},
+					"dateOfUpdate": {
+						"type": "string",
+						"format": "date-time",
+						"description": "Дата обновления"
+					},
+					"timeInMinutes": {
+						"type": "number",
+						"format": "double",
+						"description": "Затраченное время"
+					},
+					"status": {
+						"$ref": "#/components/schemas/TaskStatusEnum",
+						"description": "Статус"
+					},
+					"rank": {
+						"$ref": "#/components/schemas/TaskRankEnum",
+						"description": "Приоритет"
+					}
+				},
+				"required": [
+					"userId",
+					"assignedId",
+					"title",
+					"description",
+					"type",
+					"rank"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ListDTO_TaskDTO_": {
+				"properties": {
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/TaskDTO"
+						},
+						"type": "array",
+						"description": "Результат"
+					},
+					"page": {
+						"type": "number",
+						"format": "double",
+						"description": "Номер страницы"
+					},
+					"limit": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во элементов на странице"
+					},
+					"total": {
+						"type": "number",
+						"format": "double",
+						"description": "Всего записей по фильтру"
+					}
+				},
+				"required": [
+					"data",
+					"page",
+					"limit",
+					"total"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskFilter": {
+				"properties": {
+					"query": {
+						"type": "string",
+						"description": "Заголовок"
+					},
+					"assignedUsers": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "id исполнителя"
+					},
+					"userIds": {
+						"items": {
+							"type": "string"
+						},
+						"type": "array",
+						"description": "id создателя задачи"
+					},
+					"type": {
+						"items": {
+							"$ref": "#/components/schemas/TaskTypeEnum"
+						},
+						"type": "array",
+						"description": "Тип задачи"
+					},
+					"status": {
+						"items": {
+							"$ref": "#/components/schemas/TaskStatusEnum"
+						},
+						"type": "array",
+						"description": "Статус задачи"
+					},
+					"rank": {
+						"items": {
+							"$ref": "#/components/schemas/TaskRankEnum"
+						},
+						"type": "array",
+						"description": "Приоритет задачи"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"QueryDTO_TaskFilter_": {
+				"properties": {
+					"filter": {
+						"$ref": "#/components/schemas/TaskFilter",
+						"description": "Фильтр"
+					},
+					"page": {
+						"type": "number",
+						"format": "double",
+						"description": "Номер страницы (начиная с нуля)"
+					},
+					"limit": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во элементов на странице"
+					}
+				},
+				"required": [
+					"filter",
+					"page",
+					"limit"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"TaskWithCommentDTO": {
+				"properties": {
+					"task": {
+						"$ref": "#/components/schemas/TaskDTO",
+						"description": "Задача"
+					},
+					"comment": {
+						"$ref": "#/components/schemas/CommentDTO",
+						"description": "Комментарий"
+					}
+				},
+				"required": [
+					"task",
+					"comment"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"WorktimeDTO": {
+				"properties": {
+					"timeInMinutes": {
+						"type": "number",
+						"format": "double",
+						"description": "Время в минутах, которое нужно добавить"
+					},
+					"comment": {
+						"type": "string",
+						"description": "Комментарий"
+					},
+					"currentUser": {
+						"type": "string",
+						"description": "Текущий пользователь"
+					}
+				},
+				"required": [
+					"timeInMinutes",
+					"currentUser"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserDTO": {
+				"description": "Модель пользователя",
+				"properties": {
+					"id": {
+						"type": "string",
+						"description": "id пользователя"
+					},
+					"login": {
+						"type": "string",
+						"description": "Логин"
+					},
+					"username": {
+						"type": "string",
+						"description": "Имя"
+					},
+					"about": {
+						"type": "string",
+						"nullable": true,
+						"description": "О себе"
+					},
+					"photoUrl": {
+						"type": "string",
+						"nullable": true,
+						"description": "Ссылка на фотографию"
+					}
+				},
+				"required": [
+					"login",
+					"username"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"ListDTO_UserDTO_": {
+				"properties": {
+					"data": {
+						"items": {
+							"$ref": "#/components/schemas/UserDTO"
+						},
+						"type": "array",
+						"description": "Результат"
+					},
+					"page": {
+						"type": "number",
+						"format": "double",
+						"description": "Номер страницы"
+					},
+					"limit": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во элементов на странице"
+					},
+					"total": {
+						"type": "number",
+						"format": "double",
+						"description": "Всего записей по фильтру"
+					}
+				},
+				"required": [
+					"data",
+					"page",
+					"limit",
+					"total"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UserFilter": {
+				"properties": {
+					"query": {
+						"type": "string",
+						"nullable": true,
+						"description": "Имя пользоваетля"
+					}
+				},
+				"type": "object",
+				"additionalProperties": false
+			},
+			"QueryDTO_UserFilter_": {
+				"properties": {
+					"filter": {
+						"$ref": "#/components/schemas/UserFilter",
+						"description": "Фильтр"
+					},
+					"page": {
+						"type": "number",
+						"format": "double",
+						"description": "Номер страницы (начиная с нуля)"
+					},
+					"limit": {
+						"type": "number",
+						"format": "double",
+						"description": "Кол-во элементов на странице"
+					}
+				},
+				"required": [
+					"filter",
+					"page",
+					"limit"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"LoginDTO": {
+				"description": "Модель авторизации пользователя",
+				"properties": {
+					"login": {
+						"type": "string",
+						"description": "Логин"
+					},
+					"password": {
+						"type": "string",
+						"description": "Пароль"
+					}
+				},
+				"required": [
+					"login",
+					"password"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "school-final-task-service",
+		"version": "1.0.0",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/comments/{taskId}": {
+			"get": {
+				"operationId": "GetById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/CommentDTO"
+									},
+									"type": "array"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение комментариев по id задачи",
+				"tags": [
+					"Comments"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id задачи",
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/comments/createOrEdit": {
+			"put": {
+				"operationId": "CreateOrEdit",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CommentDTO"
+								}
+							}
+						}
+					}
+				},
+				"description": "Создаение или редактирование комментария",
+				"tags": [
+					"Comments"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CommentDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/comments/{commentId}": {
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					}
+				},
+				"description": "Удаление комментария по id",
+				"tags": [
+					"Comments"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id комментария",
+						"in": "path",
+						"name": "commentId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/tasks": {
+			"post": {
+				"operationId": "GetByFilter",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ListDTO_TaskDTO_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение списка задач по фильтру",
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/QueryDTO_TaskFilter_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks/{taskId}": {
+			"get": {
+				"operationId": "GetById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TaskDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение задачи по id",
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id задачи",
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Удаление задачи по id",
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id задачи",
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/tasks/{taskId}/status/{status}": {
+			"patch": {
+				"operationId": "UpdateStatus",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TaskDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id задачи",
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "path",
+						"name": "status",
+						"required": true,
+						"schema": {
+							"$ref": "#/components/schemas/TaskStatusEnum"
+						}
+					}
+				]
+			}
+		},
+		"/tasks/{taskId}/worktime": {
+			"patch": {
+				"operationId": "UpdateWorktime",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TaskWithCommentDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id задачи",
+						"in": "path",
+						"name": "taskId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/WorktimeDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/tasks/createOrEdit": {
+			"put": {
+				"operationId": "CreateOrEdit",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/TaskDTO"
+								}
+							}
+						}
+					}
+				},
+				"description": "Создаение или редактирование задачи",
+				"tags": [
+					"Tasks"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/TaskDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users": {
+			"post": {
+				"operationId": "GetByFilter",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/ListDTO_UserDTO_"
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение списка пользователей по фильтру",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/QueryDTO_UserFilter_"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/all": {
+			"get": {
+				"operationId": "GetAll",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/UserDTO"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение списка всех пользователей",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": []
+			}
+		},
+		"/users/{id}": {
+			"get": {
+				"operationId": "GetById",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Получение пользователя по id",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
+		"/users/edit": {
+			"put": {
+				"operationId": "Edit",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					},
+					"500": {
+						"description": "Internal Server Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Редактирование пользователя",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"allOf": [
+									{
+										"$ref": "#/components/schemas/UserDTO"
+									},
+									{
+										"$ref": "#/components/schemas/LoginDTO"
+									}
+								]
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/login": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/UserDTO"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					},
+					"401": {
+						"description": "Auth",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Авторизация пользователя",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/LoginDTO"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/users/{userId}": {
+			"delete": {
+				"operationId": "Delete",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "string"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Request Error",
+						"content": {
+							"application/json": {
+								"schema": {
+									"properties": {
+										"message": {
+											"type": "string"
+										}
+									},
+									"required": [
+										"message"
+									],
+									"type": "object"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"message": "Текст ошибки"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Удаление пользователя по id",
+				"tags": [
+					"Users"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"description": "id пользователя",
+						"in": "path",
+						"name": "userId",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/api"
+		}
+	]
+}
